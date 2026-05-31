@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PureWellnessJoy — Bringing Wellness Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdfbf7;--gold:#c9a84c;--sage:#8fbc8f;--dark:#2c2416;--warm-white:#fff9f0;
+  --text:#4a4035;--text-light:#7a7060;--border:#e8e0d4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2;color:var(--dark)}
+a{text-decoration:none;color:var(--gold);transition:color .2s}
+a:hover{color:var(--sage)}
+img{max-width:100%;display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--dark)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text);font-size:.9rem;font-weight:500;letter-spacing:.03em}
+.nav-links a:hover{color:var(--gold)}
+.hamburger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://static.showit.co/1200/XO8_BHT6wpIK4HOWiClfZg/321008/514703304_10165632054490744_3391040824683094374_n.jpg') center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(44,36,22,.55) 0%,rgba(44,36,22,.35) 50%,rgba(253,251,247,.9) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:2rem}
+.hero-content h1{font-size:4rem;color:var(--warm-white);margin-bottom:1rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-content p{font-size:1.25rem;color:rgba(255,249,240,.9);margin-bottom:2rem;font-weight:300}
+.btn{display:inline-block;padding:.85rem 2.5rem;border:2px solid var(--gold);color:var(--gold);font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;transition:all .3s;border-radius:2px}
+.btn:hover{background:var(--gold);color:var(--warm-white)}
+.btn-filled{background:var(--gold);color:var(--warm-white)}
+.btn-filled:hover{background:#b8963f;border-color:#b8963f}
+
+/* SECTIONS */
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-family:'Inter',sans-serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.section-title{font-size:2.5rem;margin-bottom:1.5rem}
+.section-title.center{text-align:center}
+.section-subtitle{text-align:center;max-width:650px;margin:0 auto 3rem;color:var(--text-light);font-weight:300;font-size:1.05rem}
+.center-text{text-align:center}
+
+/* WELLNESS STANDARD */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:1rem}
+.pillar{text-align:center;padding:2.5rem 1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--warm-white);transition:transform .3s,box-shadow .3s}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(201,168,76,.12)}
+.pillar-icon{width:56px;height:56px;margin:0 auto 1.25rem;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold)}
+.pillar h3{font-size:1.25rem;margin-bottom:.75rem}
+.pillar p{font-size:.92rem;color:var(--text-light);line-height:1.6}
+
+/* HEALERS */
+.healers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.healer-card{background:var(--warm-white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .3s}
+.healer-card:hover{transform:translateY(-3px)}
+.healer-card img{width:100%;height:320px;object-fit:cover}
+.healer-card-body{padding:1.5rem}
+.healer-card h3{font-size:1.15rem;margin-bottom:.25rem}
+.healer-card .role{font-size:.85rem;color:var(--gold);margin-bottom:.75rem;font-weight:500}
+.healer-card p{font-size:.9rem;color:var(--text-light)}
+.featured-badge{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--warm-white);padding:.2rem .6rem;border-radius:2px;margin-bottom:.5rem}
+
+/* PENTATHLON */
+.pentathlon{background:var(--dark);color:var(--warm-white)}
+.pentathlon .section-label{color:var(--sage)}
+.pentathlon .section-title{color:var(--warm-white)}
+.pentathlon .section-subtitle{color:rgba(255,249,240,.7)}
+.pentathlon-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem}
+.pentathlon-item{text-align:center;padding:2rem 1rem;border:1px solid rgba(255,249,240,.12);border-radius:4px;transition:border-color .3s}
+.pentathlon-item:hover{border-color:var(--gold)}
+.pentathlon-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:.75rem}
+.pentathlon-item h3{color:var(--warm-white);font-size:1.1rem;margin-bottom:.5rem}
+.pentathlon-item p{font-size:.85rem;color:rgba(255,249,240,.6);line-height:1.5}
+
+/* POSTURE */
+.posture-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.posture-content h2{margin-bottom:1rem}
+.posture-content p{color:var(--text-light);margin-bottom:1.25rem}
+.posture-content ul{list-style:none;padding:0}
+.posture-content li{padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--text-light);font-size:.95rem}
+.posture-content li::before{content:'';position:absolute;left:0;top:.85rem;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+
+/* SHOP */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.product-card{background:var(--warm-white);border:1px solid var(--border);border-radius:4px;padding:1.75rem;transition:transform .3s}
+.product-card:hover{transform:translateY(-3px)}
+.product-card h3{font-size:1.05rem;margin-bottom:.5rem}
+.product-card p{font-size:.88rem;color:var(--text-light);margin-bottom:1rem;line-height:1.5}
+.product-tag{display:inline-block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);border:1px solid var(--sage);padding:.15rem .5rem;border-radius:2px;margin-bottom:.5rem}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,249,240,.7);padding:4rem 2rem 2rem}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-bottom:3rem}
+.footer-col h4{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem}
+.footer-col p,.footer-col a{font-size:.88rem;line-height:1.7}
+.footer-col a{color:rgba(255,249,240,.6);display:block;margin-bottom:.25rem}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,249,240,.1);text-align:center;font-size:.8rem;color:rgba(255,249,240,.4)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .pentathlon-grid{grid-template-columns:repeat(3,1fr)}
+  .pillars{grid-template-columns:1fr}
+  .posture-split{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .hero-content h1{font-size:2.5rem}
+  .hero-content p{font-size:1.05rem}
+  section{padding:4rem 1.5rem}
+  .section-title{font-size:2rem}
+  .pentathlon-grid{grid-template-columns:1fr 1fr}
+  .shop-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .pentathlon-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">PureWellnessJoy</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#learn">Learn</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#pentathlon">Participate</a></li>
+      <li><a href="#healers">Refer</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Bringing Wellness Home</h1>
+    <p>A gathering place for healers, seekers, and anyone ready to live at a higher vibration. Discover trusted practitioners, transformative programs, and sacred products — all under one roof.</p>
+    <a href="#wellness-standard" class="btn">Explore the Standard</a>
+  </div>
+</section>
+
+<!-- PURE WELLNESS STANDARD -->
+<section id="wellness-standard">
+  <div class="container">
+    <p class="section-label center-text">The Pure Wellness Standard</p>
+    <h2 class="section-title center">What Sets Us Apart</h2>
+    <p class="section-subtitle">Every healer, product, and program on this platform meets a standard rooted in integrity, intention, and results.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">I</div>
+        <h3>Intentional Sourcing</h3>
+        <p>Every ingredient, material, and method is chosen with care. We honor the origins of what we share and the hands that created it.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">II</div>
+        <h3>Holistic Integrity</h3>
+        <p>Wellness is not one thing. Our practitioners and products address the whole person — body, mind, spirit, and environment.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">III</div>
+        <h3>Proven Practice</h3>
+        <p>Every method offered here is grounded in lived experience and real results. We do not promise miracles — we share what works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET OUR HEALERS -->
+<section id="healers" style="background:var(--warm-white)">
+  <div class="container">
+    <p class="section-label center-text">Our Community</p>
+    <h2 class="section-title center">Meet Our Healers</h2>
+    <p class="section-subtitle">A collective of practitioners, each bringing their own gift to the table. Healers who walk their talk.</p>
+    <div class="healers-grid">
+      <div class="healer-card">
+        <img src="https://static.showit.co/800/C_MpN7LsADeGxKKJOUgGhA/321008/f6946f62-aeb8-46d9-89dc-5f8699358f0a.jpg" alt="Dr. Jasmine">
+        <div class="healer-card-body">
+          <span class="featured-badge">Featured</span>
+          <h3>Dr. Jasmine</h3>
+          <p class="role">Posture Alignment &amp; Vibrational Health</p>
+          <p>Known as "Mrs. Maui," Dr. Jasmine brings decades of experience in structural alignment, breathwork, and higher-vibrational living. Founder of the Pentathlon and the Pure Wellness Standard.</p>
+        </div>
+      </div>
+      <div class="healer-card">
+        <img src="https://static.showit.co/800/V_-nLdzTuqCWEusiKU4HTw/321008/498945684_10165404591055744_7417844663896287369_n.jpg" alt="Healer">
+        <div class="healer-card-body">
+          <h3>Practitioner Spotlight</h3>
+          <p class="role">Movement &amp; Somatic Therapy</p>
+          <p>A dedicated practitioner joining our collective. Full profile and offerings coming soon.</p>
+        </div>
+      </div>
+      <div class="healer-card">
+        <div style="height:320px;background:linear-gradient(135deg,var(--cream),var(--warm-white));display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)">
+          <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold)">Join Us</span>
+        </div>
+        <div class="healer-card-body">
+          <h3>Your Name Here</h3>
+          <p class="role">Your Modality</p>
+          <p>We are always looking for healers who align with our standard. If higher vibrational living is your practice, we invite you to connect.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PENTATHLON -->
+<section class="pentathlon" id="pentathlon">
+  <div class="container">
+    <p class="section-label center-text">The Program</p>
+    <h2 class="section-title center">The Pentathlon</h2>
+    <p class="section-subtitle">Five pillars of higher vibrational living. A complete framework for transforming your daily practice — body, breath, and being.</p>
+    <div class="pentathlon-grid">
+      <div class="pentathlon-item">
+        <div class="pentathlon-num">01</div>
+        <h3>Breathe</h3>
+        <p>Conscious breath is the foundation. Learn techniques that calm the nervous system and anchor you in the present moment.</p>
+      </div>
+      <div class="pentathlon-item">
+        <div class="pentathlon-num">02</div>
+        <h3>Align</h3>
+        <p>Structural alignment creates the container for wellness. Posture, spine health, and body awareness open the path forward.</p>
+      </div>
+      <div class="pentathlon-item">
+        <div class="pentathlon-num">03</div>
+        <h3>Move</h3>
+        <p>Intentional movement — not exercise for its own sake, but purposeful motion that energizes, releases, and restores.</p>
+      </div>
+      <div class="pentathlon-item">
+        <div class="pentathlon-num">04</div>
+        <h3>Restore</h3>
+        <p>Rest is not the absence of effort. It is an active practice of recovery, reflection, and allowing the body to heal itself.</p>
+      </div>
+      <div class="pentathlon-item">
+        <div class="pentathlon-num">05</div>
+        <h3>Elevate</h3>
+        <p>The culmination of the practice — living at a higher vibration, with clarity, purpose, and connection to something greater.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSTURE SUPPORT -->
+<section id="learn">
+  <div class="container">
+    <div class="posture-split">
+      <div class="posture-content">
+        <p class="section-label">Support &amp; Products</p>
+        <h2>Posture Support</h2>
+        <p>Proper alignment is not just about standing straight — it is the structural foundation for every other pillar of wellness. Our posture support programs and products are designed by practitioners who understand the body from the inside out.</p>
+        <ul>
+          <li>Personalized posture assessments</li>
+          <li>Alignment-focused programs and coaching</li>
+          <li>Ergonomic supports and tools</li>
+          <li>Corrective movement routines</li>
+          <li>Ongoing practitioner guidance</li>
+        </ul>
+        <br>
+        <a href="#shop" class="btn">Explore Products</a>
+      </div>
+      <div>
+        <div style="background:linear-gradient(135deg,var(--cream),#f0ebe0);border-radius:4px;height:420px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)">
+          <div style="text-align:center;padding:2rem">
+            <div style="font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);margin-bottom:1rem">Align</div>
+            <p style="color:var(--text-light);font-size:.9rem;max-width:250px;margin:0 auto">Posture support products and programs — designed to meet you where you are.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" style="background:var(--warm-white)">
+  <div class="container">
+    <p class="section-label center-text">Sacred Offerings</p>
+    <h2 class="section-title center">Shop</h2>
+    <p class="section-subtitle">Each product is crafted with intention — honoring tradition, sourcing with care, and created to support your wellness journey.</p>
+    <div class="shop-grid">
+      <div class="product-card">
+        <span class="product-tag">Body</span>
+        <h3>Pikake Sampaguita Jasmine Line</h3>
+        <p>The intoxicating scent of pikake and sampaguita jasmine — sacred florals revered across cultures for their calming, heart-opening properties.</p>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">Body</span>
+        <h3>Lokelani Heavenly Rose Line</h3>
+        <p>The Lokelani rose, beloved of Maui, distilled into a collection that nourishes skin and spirit. Rose at its most reverent.</p>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">Home</span>
+        <h3>Home Blessing Kit</h3>
+        <p>Clear the energy of your space and invite in what serves you. A curated kit for blessing your home with intention and care.</p>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">Business</span>
+        <h3>New Business Launch Kit</h3>
+        <p>Begin your venture with the right energy. A collection of tools and blessings to ground your new enterprise in purpose and prosperity.</p>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">Ceremony</span>
+        <h3>Pillar of Honor Bayani Kit</h3>
+        <p>A ceremonial kit honoring the bayani spirit — courage, service, and community. For those who lead with their heart.</p>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">Transition</span>
+        <h3>Lokelani Grace Transition Kit</h3>
+        <p>For life's sacred passages — endings and beginnings alike. The Lokelani Grace kit holds space for transformation with tenderness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Pure Wellness Love</h4>
+      <p>Bringing wellness home — to your body, your space, your daily practice. A higher standard of living starts here.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Well Made Foundation</h4>
+      <a href="#wellness-standard">Our Standard</a>
+      <a href="#pentathlon">The Pentathlon</a>
+      <a href="#healers">Our Healers</a>
+      <a href="#learn">Posture Support</a>
+    </div>
+    <div class="footer-col">
+      <h4>Dr. Jasmine</h4>
+      <p>Founder of the Pure Wellness Standard and the Pentathlon. Known as "Mrs. Maui," Dr. Jasmine has dedicated her life to higher vibrational living and structural wellness.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 The Living Love Collective
+  </div>
+</footer>
+
+</body>
+</html>
