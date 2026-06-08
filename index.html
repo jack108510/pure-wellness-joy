@@ -13,8 +13,25 @@
     color: #1a1918;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   ::selection { background: #1a1918; color: #fdfbf7; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
 
   /* NAV */
   nav {
@@ -23,6 +40,7 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid #eae7e2;
+    transition: transform 0.3s ease;
   }
   .nav-inner {
     max-width: 1400px; margin: 0 auto;
@@ -33,14 +51,24 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
     color: #1a1918; text-decoration: none; font-weight: 400;
+    transition: letter-spacing 0.3s ease;
   }
+  .nav-logo:hover { letter-spacing: 5px; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
     font-family: 'Times New Roman', Times, serif;
     font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: #4a4643; text-decoration: none; transition: color 0.3s;
+    color: #4a4643; text-decoration: none; transition: color 0.3s, letter-spacing 0.3s;
+    position: relative;
   }
-  .nav-links a:hover { color: #1a1918; }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+    background: #1a1918;
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: #1a1918; letter-spacing: 3px; }
+  .nav-links a:hover::after { width: 100%; }
   @media (max-width: 640px) {
     .nav-inner { padding: 14px 20px; }
     .nav-links { gap: 20px; }
@@ -52,8 +80,10 @@
   .editorial-img { width: 100%; display: block; object-fit: cover; }
   .img-full { width: 100%; max-height: 520px; object-fit: cover; }
   .img-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .img-split img { width: 100%; height: 400px; object-fit: cover; display: block; }
-  .img-contained { max-width: 900px; margin: 0 auto; display: block; }
+  .img-split img { width: 100%; height: 400px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .img-split img:hover { transform: scale(1.02); }
+  .img-contained { max-width: 900px; margin: 0 auto; display: block; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .img-contained:hover { transform: scale(1.01); }
   .img-caption {
     font-family: 'Times New Roman', Times, serif;
     font-size: 11px; font-style: italic; color: #76716d;
@@ -65,19 +95,60 @@
     .img-full { max-height: 360px; }
   }
 
+  /* FULL-WIDTH IMAGE BREAK */
+  .image-break {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 320px;
+    max-height: 560px;
+    overflow: hidden;
+  }
+  .image-break img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .image-break .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(253,251,247,0.15), rgba(253,251,247,0.5));
+  }
+  .image-break .image-break-text {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px;
+    text-align: center;
+  }
+  .image-break .image-break-text p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px; font-style: italic; color: #4a4643;
+    letter-spacing: 1px;
+  }
+
   /* HERO */
   .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     text-align: center; padding: 140px 40px 120px;
     position: relative;
-    background: linear-gradient(to bottom, rgba(253,251,247,0.3) 0%, rgba(253,251,247,0.95) 100%),
-      url('images/family-beach-sunset.jpg') center/cover no-repeat;
+    overflow: hidden;
   }
-  .hero-content { max-width: 800px; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('images/family-beach-sunset.jpg') center/cover no-repeat;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(253,251,247,0.55) 0%,
+      rgba(253,251,247,0.75) 40%,
+      rgba(253,251,247,0.92) 100%
+    );
+  }
+  .hero-content { max-width: 800px; position: relative; z-index: 2; }
   .hero-eyebrow {
     font-family: 'Times New Roman', Times, serif;
     font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
     color: #76716d; margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 1s 0.3s forwards;
   }
   .hero h1 {
     font-family: 'Times New Roman', Times, serif;
@@ -85,12 +156,23 @@
     font-weight: 400; line-height: 1.05;
     letter-spacing: -1px; color: #1a1918;
     margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 1s 0.5s forwards;
   }
-  .hero-rule { width: 60px; height: 1px; background: #a39e99; margin: 0 auto 40px; border: none; }
+  .hero-rule {
+    width: 0; height: 1px; background: linear-gradient(90deg, transparent, #b8973e, transparent);
+    margin: 0 auto 40px; border: none;
+    animation: goldLine 2s 1s forwards;
+  }
+  @keyframes goldLine { to { width: 120px; } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .hero-subtitle {
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px; font-style: italic;
     color: #4a4643; line-height: 1.8; max-width: 600px; margin: 0 auto;
+    opacity: 0; animation: fadeUp 1s 1.2s forwards;
   }
 
   /* SECTIONS */
@@ -119,7 +201,9 @@
   .petal-item {
     padding: 40px 36px; border-bottom: 1px solid #eae7e2;
     border-right: 1px solid #eae7e2;
+    transition: background 0.4s ease;
   }
+  .petal-item:hover { background: rgba(234, 231, 226, 0.3); }
   .petal-item:nth-child(3n) { border-right: none; }
   .petal-item:nth-child(4),
   .petal-item:nth-child(5) { border-right: 1px solid #eae7e2; }
@@ -132,7 +216,9 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 22px; font-weight: 400; color: #1a1918;
     margin: 8px 0;
+    transition: color 0.3s;
   }
+  .petal-item:hover .petal-name { color: #3d3a38; }
   .petal-body { font-size: 14px; color: #76716d; line-height: 1.7; }
   @media (max-width: 768px) {
     .petals-grid { grid-template-columns: 1fr; }
@@ -143,39 +229,100 @@
   .catalog-list { margin-top: 60px; }
   .catalog-item {
     padding: 48px 0; border-bottom: 1px solid #eae7e2;
+    transition: background 0.4s ease;
+    position: relative;
   }
   .catalog-item:first-child { border-top: 1px solid #eae7e2; }
+  .catalog-item:nth-child(even) { background: rgba(234, 231, 226, 0.15); }
+  .catalog-item:hover { background: rgba(234, 231, 226, 0.3); }
   .catalog-name {
     font-family: 'Times New Roman', Times, serif;
     font-size: 26px; font-weight: 400; color: #1a1918;
     margin-bottom: 8px;
+    transition: letter-spacing 0.3s;
   }
+  .catalog-item:hover .catalog-name { letter-spacing: 0.5px; }
   .catalog-tagline {
     font-family: 'Times New Roman', Times, serif;
     font-size: 14px; font-style: italic; color: #76716d;
     margin-bottom: 16px;
   }
   .catalog-body { font-size: 15px; color: #4a4643; line-height: 1.8; max-width: 720px; }
+  .catalog-item::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: transparent;
+    transition: background 0.4s;
+  }
+  .catalog-item:hover::before { background: #b8973e; }
 
   /* BLOOM CIRCLE */
   .bloom-steps {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 60px; margin-top: 80px;
+    gap: 0; margin-top: 80px;
+    border-top: 1px solid #eae7e2;
   }
-  .bloom-step { }
+  .bloom-step {
+    padding: 48px 36px;
+    border-bottom: 1px solid #eae7e2;
+    border-right: 1px solid #eae7e2;
+    position: relative;
+    transition: background 0.4s;
+  }
+  .bloom-step:nth-child(3n) { border-right: none; }
+  .bloom-step:hover { background: rgba(234, 231, 226, 0.25); }
   .bloom-step-num {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 48px; font-weight: 400; color: #eae7e2;
+    font-size: 64px; font-weight: 400; color: #eae7e2;
     line-height: 1; margin-bottom: 20px;
+    transition: color 0.4s;
   }
+  .bloom-step:hover .bloom-step-num { color: #d4cfc9; }
   .bloom-step-title {
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px; font-weight: 400; color: #1a1918;
     margin-bottom: 12px;
   }
   .bloom-step-body { font-size: 14px; color: #76716d; line-height: 1.7; }
+  .bloom-step-connector {
+    position: absolute; right: -20px; top: 50%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px; color: #d4cfc9;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .bloom-step:nth-child(3n) .bloom-step-connector { display: none; }
   @media (max-width: 768px) {
-    .bloom-steps { grid-template-columns: 1fr; gap: 48px; }
+    .bloom-steps { grid-template-columns: 1fr; }
+    .bloom-step { border-right: none; }
+    .bloom-step-connector { display: none; }
+  }
+
+  /* BLOOM CIRCLE VISUAL BANNER */
+  .bloom-banner {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    min-height: 280px;
+    max-height: 440px;
+    overflow: hidden;
+  }
+  .bloom-banner img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .bloom-banner .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(253,251,247,0.3), rgba(253,251,247,0.7));
+  }
+  .bloom-banner-text {
+    position: absolute; bottom: 48px; left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .bloom-banner-text p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px; font-style: italic; color: #4a4643;
+    letter-spacing: 1px;
   }
 
   /* DARK SECTION */
@@ -187,8 +334,9 @@
 
   /* TRANSPARENCY */
   .transparency-blocks { margin-top: 60px; }
-  .t-block { padding: 40px 0; border-bottom: 1px solid #eae7e2; }
+  .t-block { padding: 40px 0; border-bottom: 1px solid #eae7e2; transition: padding-left 0.4s; }
   .t-block:first-child { border-top: 1px solid #eae7e2; }
+  .t-block:hover { padding-left: 16px; }
   .t-block-title {
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px; font-weight: 400; color: #1a1918;
@@ -206,7 +354,9 @@
   .service-item {
     padding: 36px; border-bottom: 1px solid #eae7e2;
     border-right: 1px solid #eae7e2;
+    transition: background 0.4s;
   }
+  .service-item:hover { background: rgba(234, 231, 226, 0.25); }
   .service-item:nth-child(3n) { border-right: none; }
   .service-name {
     font-family: 'Times New Roman', Times, serif;
@@ -222,17 +372,27 @@
   /* SEASONS */
   .seasons-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 60px; margin-top: 60px;
+    gap: 0; margin-top: 60px;
+    border-top: 1px solid #eae7e2;
   }
+  .season {
+    padding: 40px 36px;
+    border-bottom: 1px solid #eae7e2;
+    border-right: 1px solid #eae7e2;
+    transition: background 0.4s;
+  }
+  .season:nth-child(2n) { border-right: none; }
+  .season:hover { background: rgba(234, 231, 226, 0.25); }
   .season-name {
     font-family: 'Times New Roman', Times, serif;
     font-size: 22px; font-weight: 400; color: #1a1918;
     margin-bottom: 8px;
   }
   .season-details { font-size: 14px; color: #4a4643; line-height: 1.8; }
-  .season-flagship { margin-top: 8px; font-size: 13px; color: #76716d; }
+  .season-flagship { margin-top: 8px; font-size: 13px; color: #76716d; font-style: italic; }
   @media (max-width: 768px) {
-    .seasons-grid { grid-template-columns: 1fr; gap: 48px; }
+    .seasons-grid { grid-template-columns: 1fr; }
+    .season { border-right: none; }
   }
 
   /* MEMBERSHIP */
@@ -249,9 +409,29 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px; color: #1a1918; text-decoration: none;
     border-bottom: 1px solid #a39e99; padding-bottom: 2px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, letter-spacing 0.3s;
   }
-  .contact-email:hover { border-color: #1a1918; }
+  .contact-email:hover { border-color: #b8973e; letter-spacing: 1px; }
+
+  /* PARALLAX IMAGE SECTION */
+  .parallax-image {
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    min-height: 300px;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  .parallax-image .bg {
+    position: absolute; top: -20%; left: 0; right: 0; height: 140%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+  .parallax-image .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(253,251,247,0.2), rgba(253,251,247,0.6));
+  }
 </style>
 </head>
 <body>
@@ -271,6 +451,8 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">The Living Love Collective</p>
     <h1>Pure Wellness<br>Love</h1>
@@ -282,33 +464,33 @@
 <!-- THE 5-PETAL LAYOUT -->
 <section>
   <div class="section-inner">
-    <p class="section-label">The Architecture</p>
-    <h2 class="section-title">Five Petals</h2>
-    <hr class="section-rule">
-    <p class="section-body">Pure Wellness Love is organized into five living petals, each serving a distinct dimension of whole-family wellness.</p>
+    <p class="section-label reveal">The Architecture</p>
+    <h2 class="section-title reveal">Five Petals</h2>
+    <hr class="section-rule reveal">
+    <p class="section-body reveal">Pure Wellness Love is organized into five living petals, each serving a distinct dimension of whole-family wellness.</p>
 
     <div class="petals-grid">
-      <div class="petal-item">
+      <div class="petal-item reveal reveal-delay-1">
         <span class="petal-num">I</span>
         <h3 class="petal-name">Store</h3>
         <p class="petal-body">The sensory commerce experience. Candles, botanicals, and curated ritual kits designed for every room and every season.</p>
       </div>
-      <div class="petal-item">
+      <div class="petal-item reveal reveal-delay-2">
         <span class="petal-num">II</span>
         <h3 class="petal-name">School</h3>
         <p class="petal-body">Digital and in-person education. Sensory styling, material craft, and the art of bringing intentional living into the home.</p>
       </div>
-      <div class="petal-item">
+      <div class="petal-item reveal reveal-delay-3">
         <span class="petal-num">III</span>
         <h3 class="petal-name">Events</h3>
         <p class="petal-body">Seasonal gatherings, workshops, and community experiences aligned with the four-season solar calendar.</p>
       </div>
-      <div class="petal-item">
+      <div class="petal-item reveal reveal-delay-4">
         <span class="petal-num">IV</span>
         <h3 class="petal-name">Services</h3>
         <p class="petal-body">Sensory styling workshops, material styling courses, and digital interactive classes for individuals and households.</p>
       </div>
-      <div class="petal-item">
+      <div class="petal-item reveal reveal-delay-5">
         <span class="petal-num">V</span>
         <h3 class="petal-name">Membership</h3>
         <p class="petal-body">The Bloom Circle. A white-glove household registry with milestone tracking, complimentary botanicals, and exclusive blessings.</p>
@@ -317,47 +499,50 @@
   </div>
 </section>
 
-<!-- IMAGE -->
-<div style="padding: 80px 40px 0;">
-  <img src="images/hands-planting.jpg" alt="Hands nurturing new growth" class="img-contained" style="max-height: 480px;">
-  <p class="img-caption">Where intention meets craft</p>
+<!-- IMAGE BREAK - hands planting -->
+<div class="image-break reveal">
+  <img src="images/hands-planting.jpg" alt="Hands nurturing new growth">
+  <div class="overlay"></div>
+  <div class="image-break-text">
+    <p>Where intention meets craft</p>
+  </div>
 </div>
 
 <!-- THE STORE -->
 <section id="store">
   <div class="section-inner">
-    <p class="section-label">Shop</p>
-    <h2 class="section-title">The Store</h2>
-    <hr class="section-rule">
-    <p class="section-body">Each product is an editorial entry, a sensory story designed for a specific space, season, and moment in the life of a household.</p>
+    <p class="section-label reveal">Shop</p>
+    <h2 class="section-title reveal">The Store</h2>
+    <hr class="section-rule reveal">
+    <p class="section-body reveal">Each product is an editorial entry, a sensory story designed for a specific space, season, and moment in the life of a household.</p>
 
     <div class="catalog-list">
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">Pikake Sampaguita Jasmine Line</h3>
         <p class="catalog-tagline">For the living room</p>
         <p class="catalog-body">Organic candle wax, pure jasmine botanical oils, aura essences. Establishes courage, spatial safety, environmental purity. The signature scent of the home.</p>
       </div>
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">Lokelani Heavenly Rose Line</h3>
         <p class="catalog-tagline">Deep heart-chakra activation</p>
         <p class="catalog-body">Cottage rose base layered over velvet sandalwood extract. Devotional lineage honor, ancestral connection work. For the spaces where family gathers.</p>
       </div>
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">The Home Blessing Kit</h3>
         <p class="catalog-tagline">For spatial resets</p>
         <p class="catalog-body">Jasmine candle, raw minerals, energy-clearing mist, Feng Shui blueprints. For spatial resets after relocation or winter quiet. A complete ceremony for the home.</p>
       </div>
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">The New Business Launch Kit</h3>
         <p class="catalog-tagline">Structural organization and wealth abundance</p>
         <p class="catalog-body">Citrus and jasmine wax blend, organic linen desk wraps, vision-mapping journals. Professional visions and structural organization for new ventures.</p>
       </div>
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">The Pillar of Honor (Bayani) Kit</h3>
         <p class="catalog-tagline">For fathers, sons, uncles</p>
         <p class="catalog-body">Cedarwood and jasmine essences, raw leather legacy journal, dialogue cards. Relationship transparency and protective honor. The masculine pillar, made tangible.</p>
       </div>
-      <div class="catalog-item">
+      <div class="catalog-item reveal">
         <h3 class="catalog-name">The Lokelani Grace Transition Kit</h3>
         <p class="catalog-tagline">End-of-life vibrational care</p>
         <p class="catalog-body">Unscented organic beeswax prayer candles, hand-woven bedside comfort wraps. End-of-life care, vibrational care, dignity. For the most sacred transitions.</p>
@@ -367,31 +552,39 @@
 </section>
 
 <!-- IMAGE SPLIT -->
-<div class="img-split">
+<div class="img-split reveal">
   <img src="images/friends-sea.jpg" alt="Community by the sea">
   <img src="images/ocean-sunset-rocks.jpg" alt="Ocean at sunset">
+</div>
+
+<!-- BLOOM CIRCLE BANNER -->
+<div class="bloom-banner reveal">
+  <img src="images/family-beach-sunset.jpg" alt="Family gathering at golden hour">
+  <div class="overlay"></div>
 </div>
 
 <!-- THE BLOOM CIRCLE HOUSEHOLD REGISTRY -->
 <section id="bloom">
   <div class="section-inner">
-    <p class="section-label">Learn</p>
-    <h2 class="section-title">The Bloom Circle Household Registry</h2>
-    <hr class="section-rule">
-    <p class="section-body">A white-glove, multi-generational household registry. Upon joining, families log up to five critical annual lineage dates and receive curated sensory milestones throughout the year.</p>
+    <p class="section-label reveal">Learn</p>
+    <h2 class="section-title reveal">The Bloom Circle Household Registry</h2>
+    <hr class="section-rule reveal">
+    <p class="section-body reveal">A white-glove, multi-generational household registry. Upon joining, families log up to five critical annual lineage dates and receive curated sensory milestones throughout the year.</p>
 
     <div class="bloom-steps">
-      <div class="bloom-step">
+      <div class="bloom-step reveal reveal-delay-1">
         <div class="bloom-step-num">I</div>
         <h3 class="bloom-step-title">Log Your Lineage Dates</h3>
         <p class="bloom-step-body">Maternal and paternal birthdays. Wedding and partnership anniversaries. Business launch dates. Sacred ancestral remembrance days. Up to five dates per household.</p>
+        <span class="bloom-step-connector">&#8594;</span>
       </div>
-      <div class="bloom-step">
+      <div class="bloom-step reveal reveal-delay-2">
         <div class="bloom-step-num">II</div>
         <h3 class="bloom-step-title">14 Days Prior</h3>
         <p class="bloom-step-body">An automated sensory notice arrives, accompanied by a complimentary mini candle or botanical. A gentle, physical reminder that a sacred moment is approaching.</p>
+        <span class="bloom-step-connector">&#8594;</span>
       </div>
-      <div class="bloom-step">
+      <div class="bloom-step reveal reveal-delay-3">
         <div class="bloom-step-num">III</div>
         <h3 class="bloom-step-title">On the Milestone Day</h3>
         <p class="bloom-step-body">An exclusive five-minute somatic audio or written blessing track, voiced by Dr. Jasmine. A personal, spoken honoring of the moment.</p>
@@ -400,29 +593,29 @@
   </div>
 </section>
 
-<!-- IMAGE -->
-<div style="padding: 80px 40px 0;">
-  <img src="images/green-hills.jpg" alt="Rolling green hills" class="img-full" style="max-height: 440px;">
-  <p class="img-caption">Seasonal rhythms, household rituals</p>
+<!-- PARALLAX IMAGE - green hills -->
+<div class="parallax-image reveal">
+  <div class="bg" style="background-image: url('images/green-hills.jpg');"></div>
+  <div class="overlay"></div>
 </div>
 
 <!-- FINANCIAL TRANSPARENCY -->
 <section>
   <div class="section-inner">
-    <p class="section-label">Where It Goes</p>
-    <h2 class="section-title">Financial Transparency</h2>
-    <hr class="section-rule">
+    <p class="section-label reveal">Where It Goes</p>
+    <h2 class="section-title reveal">Financial Transparency</h2>
+    <hr class="section-rule reveal">
 
     <div class="transparency-blocks">
-      <div class="t-block">
+      <div class="t-block reveal">
         <h3 class="t-block-title">10% of Gross Store Profits</h3>
         <p class="t-block-flow">Directed to the <strong>WellMade Foundation</strong>.</p>
       </div>
-      <div class="t-block">
+      <div class="t-block reveal">
         <h3 class="t-block-title">70% to Sampaguita Scholarship</h3>
         <p class="t-block-flow">Tuition funds supporting the next generation of scholars and leaders.</p>
       </div>
-      <div class="t-block">
+      <div class="t-block reveal">
         <h3 class="t-block-title">30% to Local Operations</h3>
         <p class="t-block-flow">Local event operations and <strong>raw materials</strong> for community programming.</p>
       </div>
@@ -430,24 +623,33 @@
   </div>
 </section>
 
+<!-- IMAGE BREAK - woman field -->
+<div class="image-break reveal">
+  <img src="images/woman-field-mountains.jpg" alt="Woman in a mountain field">
+  <div class="overlay"></div>
+  <div class="image-break-text">
+    <p>Hands-on experiences in sensory craft and material styling</p>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
-    <p class="section-label">Participate</p>
-    <h2 class="section-title">Services</h2>
-    <hr class="section-rule">
-    <p class="section-body">Hands-on experiences in sensory craft, material styling, and digital education. Each service deepens the relationship between intention and living space.</p>
+    <p class="section-label reveal">Participate</p>
+    <h2 class="section-title reveal">Services</h2>
+    <hr class="section-rule reveal">
+    <p class="section-body reveal">Hands-on experiences in sensory craft, material styling, and digital education. Each service deepens the relationship between intention and living space.</p>
 
     <div class="services-grid">
-      <div class="service-item">
+      <div class="service-item reveal reveal-delay-1">
         <h3 class="service-name">Sensory Styling Workshops</h3>
         <p class="service-body">Learn to curate the sensory landscape of your home through scent, light, and material intention.</p>
       </div>
-      <div class="service-item">
+      <div class="service-item reveal reveal-delay-2">
         <h3 class="service-name">Material Styling Courses</h3>
         <p class="service-body">Deep-dive instruction in botanical craft, wax formulation, and the art of spatial composition.</p>
       </div>
-      <div class="service-item">
+      <div class="service-item reveal reveal-delay-3">
         <h3 class="service-name">Digital Interactive Classes</h3>
         <p class="service-body">Live and recorded sessions bringing the school petal into any home, anywhere.</p>
       </div>
@@ -455,30 +657,36 @@
   </div>
 </section>
 
+<!-- PARALLAX IMAGE - maui mountains -->
+<div class="parallax-image reveal">
+  <div class="bg" style="background-image: url('images/maui-mountains.jpg');"></div>
+  <div class="overlay"></div>
+</div>
+
 <!-- SEASONAL PROGRAMMING -->
 <section>
   <div class="section-inner">
-    <p class="section-label">The Rhythm</p>
-    <h2 class="section-title">Seasonal Programming</h2>
-    <hr class="section-rule">
-    <p class="section-body">A four-season solar calendar guides the store, services, and events of Pure Wellness Love, aligning household rituals with the natural world.</p>
+    <p class="section-label reveal">The Rhythm</p>
+    <h2 class="section-title reveal">Seasonal Programming</h2>
+    <hr class="section-rule reveal">
+    <p class="section-body reveal">A four-season solar calendar guides the store, services, and events of Pure Wellness Love, aligning household rituals with the natural world.</p>
 
     <div class="seasons-grid">
-      <div class="season">
+      <div class="season reveal reveal-delay-1">
         <h3 class="season-name">Spring</h3>
         <p class="season-details">Home Blessing Kit focus. Spatial resets, clearing ceremonies, and the renewal of the living environment.</p>
         <p class="season-flagship">Flagship: The Home Blessing Kit</p>
       </div>
-      <div class="season">
+      <div class="season reveal reveal-delay-2">
         <h3 class="season-name">Summer</h3>
         <p class="season-details">Heavy programmatic tracking. Community workshops, sensory styling intensives, and Bloom Circle milestone celebrations.</p>
       </div>
-      <div class="season">
+      <div class="season reveal reveal-delay-3">
         <h3 class="season-name">Fall</h3>
         <p class="season-details">New Business Launch Kit deployment. Professional vision-mapping, structural organization, and wealth abundance rituals.</p>
         <p class="season-flagship">Flagship: The New Business Launch Kit</p>
       </div>
-      <div class="season">
+      <div class="season reveal reveal-delay-4">
         <h3 class="season-name">Winter</h3>
         <p class="season-details">Lokelani Grace Transition Kit. Sacred Rosary Transition Framework. Organic beeswax lines. For the most sacred and quiet season.</p>
         <p class="season-flagship">Flagship: The Lokelani Grace Transition Kit</p>
@@ -487,29 +695,26 @@
   </div>
 </section>
 
-<!-- IMAGE -->
-<div style="padding: 0;">
-  <img src="images/maui-mountains.jpg" alt="Maui mountain landscape" class="img-contained" style="max-height: 400px;">
-</div>
-
 <!-- MEMBERSHIP / BLOOM CIRCLE -->
 <section class="membership-section">
   <div class="section-inner">
-    <p class="section-label">Membership</p>
-    <h2 class="section-title">Bloom Circle</h2>
-    <hr class="section-rule" style="margin-left: auto; margin-right: auto;">
-    <p class="section-body" style="max-width: 560px; margin: 0 auto;">The inner circle of Pure Wellness Love. Members receive milestone tracking, complimentary botanicals, exclusive blessings voiced by Dr. Jasmine, and first access to seasonal kits and workshops.</p>
+    <p class="section-label reveal">Membership</p>
+    <h2 class="section-title reveal">Bloom Circle</h2>
+    <hr class="section-rule reveal" style="margin-left: auto; margin-right: auto;">
+    <p class="section-body reveal" style="max-width: 560px; margin: 0 auto;">The inner circle of Pure Wellness Love. Members receive milestone tracking, complimentary botanicals, exclusive blessings voiced by Dr. Jasmine, and first access to seasonal kits and workshops.</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="section-inner">
-    <p class="section-label">Connect</p>
-    <h2 class="section-title">Contact</h2>
-    <hr class="section-rule" style="margin-left: auto; margin-right: auto;">
-    <p class="contact-body">To shop, join the Bloom Circle, participate in a workshop, or refer a household, reach out. Every conversation is the beginning of something generational.</p>
-    <a href="mailto:contact@purewellnesslove.com" class="contact-email">contact@purewellnesslove.com</a>
+    <p class="section-label reveal">Connect</p>
+    <h2 class="section-title reveal">Contact</h2>
+    <hr class="section-rule reveal" style="margin-left: auto; margin-right: auto;">
+    <p class="contact-body reveal">To shop, join the Bloom Circle, participate in a workshop, or refer a household, reach out. Every conversation is the beginning of something generational.</p>
+    <div class="reveal" style="padding-top: 8px;">
+      <a href="mailto:contact@purewellnesslove.com" class="contact-email">contact@purewellnesslove.com</a>
+    </div>
   </div>
 </section>
 
@@ -566,6 +771,70 @@
 
  </div>
 </footer>
+
+<script>
+// Scroll Reveal with IntersectionObserver
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+
+// Hero Parallax
+(function() {
+  var hero = document.querySelector('.hero');
+  var heroBg = document.querySelector('.hero-bg');
+  if (!hero || !heroBg) return;
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        var scrollY = window.pageYOffset;
+        var heroBottom = hero.offsetTop + hero.offsetHeight;
+        if (scrollY < heroBottom) {
+          heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+
+// Mid-page parallax images
+(function() {
+  var parallaxBgs = document.querySelectorAll('.parallax-image .bg');
+  if (!parallaxBgs.length) return;
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        parallaxBgs.forEach(function(bg) {
+          var rect = bg.parentElement.getBoundingClientRect();
+          var center = rect.top + rect.height / 2;
+          var viewCenter = window.innerHeight / 2;
+          var offset = (center - viewCenter) * 0.15;
+          bg.style.transform = 'translateY(' + offset + 'px)';
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
