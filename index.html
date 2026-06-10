@@ -12,9 +12,9 @@ html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--ivory);color:var(--charcoal);font-weight:300;line-height:2;overflow-x:hidden}
 h1,h2,h3,h4,h5{font-family:'Playfair Display',Georgia,serif;font-weight:400}
 
-.tracker-bar{background:var(--charcoal);color:var(--gold);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:3px;font-weight:400;font-family:'Playfair Display',serif}
+.tracker-bar{background:var(--charcoal);color:var(--gold);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:3px;font-weight:400;font-family:'Playfair Display',serif;position:relative;z-index:101}
 
-nav{position:fixed;top:36px;left:0;right:0;z-index:100;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;transition:background .4s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
 nav.scrolled{background:rgba(253,251,247,.95);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(201,169,110,.15)}
 nav .logo{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:4px;color:var(--charcoal);text-decoration:none;text-transform:uppercase}
 nav .nav-links{display:flex;gap:40px;list-style:none}
@@ -22,21 +22,27 @@ nav .nav-links a{color:var(--charcoal);text-decoration:none;font-size:11px;lette
 nav .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 nav .nav-links a:hover::after{width:100%}
 
-/* Petal nav */
+/* Petal nav bar */
+.petal-bar{background:var(--ivory);border-bottom:1px solid var(--cream);padding:24px 60px;display:flex;justify-content:center;gap:50px;flex-wrap:wrap}
+.petal-bar a{text-decoration:none;text-align:center;color:var(--charcoal);font-size:10px;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.petal-bar a:hover{color:var(--gold)}
+.petal-bar a .petal-icon{font-size:20px;display:block;margin-bottom:4px}
 
-.petal-nav a{text-decoration:none;text-align:center;color:var(--charcoal)}
-.petal-nav a 
-.petal-nav a 
-
-/* Hero - EDITORIAL with immense whitespace */
-.hero{min-height:100vh;display:flex;align-items:center;padding:180px 120px 120px;position:relative}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;max-width:1400px;margin:0 auto}
-.hero-text .label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:50px}
-.hero-text h1{font-size:clamp(42px,6vw,88px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:60px}
-.hero-text h1 em{font-style:italic;color:var(--gold)}
-.hero-text p{font-size:15px;line-height:1.9;color:#666;max-width:440px}
-.hero-visual{position:relative}
-.hero-visual img{width:100%;height:700px;object-fit:cover}
+/* Cinematic Hero */
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/woman-field-mountains.jpg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4)}
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:800px;padding:0 40px}
+.hero-content .hero-label{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:40px;font-family:'Playfair Display',serif}
+.hero-content h1{font-size:clamp(48px,8vw,110px);font-weight:400;line-height:1.05;letter-spacing:-1px;margin-bottom:30px}
+.hero-content .hero-tagline{font-size:15px;line-height:1.9;color:rgba(255,255,255,.75);max-width:550px;margin:0 auto 40px}
+.hero-content .hero-line{width:60px;height:1px;background:var(--gold);margin:0 auto 40px}
+.hero-content .btn-gold{color:var(--gold);border-color:var(--gold)}
+.hero-content .btn-gold:hover{background:var(--gold);color:var(--charcoal)}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:10px;letter-spacing:3px;text-transform:uppercase;animation:scrollBounce 2s infinite}
+.scroll-indicator .scroll-arrow{width:1px;height:40px;position:relative}
+.scroll-indicator .scroll-arrow::before{content:'';position:absolute;top:0;left:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.5))}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -160,8 +166,31 @@ footer{background:var(--charcoal);color:#fff;padding:100px 80px 60px;border-top:
   </ul>
 </nav>
 
-
+<!-- Cinematic Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">The Branches & Commerce</div>
+    <h1>Pure Wellness Love</h1>
+    <p class="hero-tagline">A sensory editorial experience. Botanical essences, milestone rituals, and whole-family generational care.</p>
+    <div class="hero-line"></div>
+    <a href="#store" class="btn-gold">Enter the Store</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
 </section>
+
+<!-- 5-Petal Nav Bar -->
+<div class="petal-bar">
+  <a href="#store"><span class="petal-icon">🌸</span>Store</a>
+  <a href="#"><span class="petal-icon">🌿</span>School</a>
+  <a href="#"><span class="petal-icon">✨</span>Events</a>
+  <a href="#"><span class="petal-icon">🛡</span>Services</a>
+  <a href="#bloom"><span class="petal-icon">🌺</span>Membership</a>
+</div>
 
 <div class="gold-divider"></div>
 
@@ -325,7 +354,7 @@ footer{background:var(--charcoal);color:#fff;padding:100px 80px 60px;border-top:
 <script>
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
-window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>80)});
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>window.innerHeight*.3)});
 </script>
 </body>
 </html>
