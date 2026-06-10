@@ -3,502 +3,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pure Wellness Love | Bring Wellness Home</title>
+<title>Pure Wellness Love — The Branches</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ivory:#fdfbf7;--charcoal:#1a1a1a;--gold:#c9a96e;--cream:#f5f0e8;--gold-light:#e8d5a8}
 html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--ivory);color:var(--charcoal);font-weight:300;line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Playfair Display',Georgia,serif;font-weight:400}
 
-:root{
-  --ivory:#fdfbf7;--charcoal:#1a1a1a;--gold:#c9a96e;--gold-light:#d4bc8a;
-  --cream:#f5f0e8;--warm-gray:#4a4643;--light-gray:#76716d;--border:#eae7e2;
-  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
-  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-}
+.tracker-bar{background:var(--charcoal);color:var(--gold);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:3px;font-weight:400;font-family:'Playfair Display',serif}
 
-body{font-family:var(--sans);background:var(--ivory);color:var(--charcoal);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--charcoal);color:var(--ivory)}
+nav{position:fixed;top:36px;left:0;right:0;z-index:100;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;transition:background .4s}
+nav.scrolled{background:rgba(253,251,247,.95);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(201,169,110,.15)}
+nav .logo{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:4px;color:var(--charcoal);text-decoration:none;text-transform:uppercase}
+nav .nav-links{display:flex;gap:40px;list-style:none}
+nav .nav-links a{color:var(--charcoal);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:400;position:relative;padding-bottom:2px}
+nav .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+nav .nav-links a:hover::after{width:100%}
 
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+/* Petal nav */
+.petal-nav{display:flex;justify-content:center;gap:50px;padding:40px 60px;background:var(--ivory);border-bottom:1px solid var(--cream)}
+.petal-nav a{text-decoration:none;text-align:center;color:var(--charcoal)}
+.petal-nav a .petal-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.petal-nav a .petal-name{font-family:'Playfair Display',serif;font-size:16px}
+
+/* Hero - EDITORIAL with immense whitespace */
+.hero{min-height:100vh;display:flex;align-items:center;padding:180px 120px 120px;position:relative}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;max-width:1400px;margin:0 auto}
+.hero-text .label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:30px}
+.hero-text h1{font-size:clamp(42px,6vw,88px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:40px}
+.hero-text h1 em{font-style:italic;color:var(--gold)}
+.hero-text p{font-size:15px;line-height:1.9;color:#666;max-width:440px}
+.hero-visual{position:relative}
+.hero-visual img{width:100%;height:700px;object-fit:cover}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}
-.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
-.reveal-d5{transition-delay:.5s}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(234,231,226,.6);transition:transform .3s}
-.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 48px}
-.nav-logo{font-family:var(--serif);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--charcoal);text-decoration:none;transition:letter-spacing .4s}
-.nav-logo:hover{letter-spacing:6px}
-.nav-links{display:flex;gap:40px;list-style:none}
-.nav-links a{font-family:var(--serif);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--warm-gray);text-decoration:none;position:relative;transition:color .3s}
-.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
-.nav-links a:hover{color:var(--charcoal)}
-.nav-links a:hover::after{width:100%}
-@media(max-width:768px){.nav-inner{padding:14px 24px}.nav-links{gap:24px}.nav-links a{font-size:10px}.nav-logo{font-size:11px}}
+.gold-line{width:60px;height:1px;background:var(--gold);margin:24px 0}
+.gold-divider{text-align:center;padding:80px 0}
+.gold-divider::before{content:'✦';color:var(--gold);font-size:18px;letter-spacing:20px}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 48px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:-80px;background:url('images/family-beach-sunset.jpg') center/cover no-repeat;will-change:transform}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,251,247,.45) 0%,rgba(253,251,247,.65) 40%,rgba(253,251,247,.92) 100%)}
-.hero-content{position:relative;z-index:2;max-width:900px}
-.hero-eyebrow{font-family:var(--serif);font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--light-gray);margin-bottom:40px}
-.hero h1{font-family:var(--serif);font-size:clamp(48px,8vw,100px);font-weight:400;line-height:1.05;letter-spacing:-2px;color:var(--charcoal);margin-bottom:48px}
-.hero-divider{width:80px;height:1px;border:none;margin:0 auto 48px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:goldPulse 4s ease-in-out infinite}
-@keyframes goldPulse{0%,100%{width:80px;opacity:.6}50%{width:140px;opacity:1}}
-.hero-subtitle{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--warm-gray);line-height:1.9;max-width:640px;margin:0 auto}
+.label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 
-/* SECTIONS */
-section{padding:140px 48px}
-.section-inner{max-width:1200px;margin:0 auto}
-.section-label{font-family:var(--serif);font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
-.section-title{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;color:var(--charcoal);margin-bottom:28px}
-.section-rule{width:48px;height:1px;background:var(--gold);margin-bottom:48px;border:none}
-.section-body{font-family:var(--sans);font-size:16px;color:var(--warm-gray);line-height:1.9;max-width:640px}
+/* Store - EDITORIAL staggered grid */
+.store{padding:160px 80px}
+.store-header{text-align:center;margin-bottom:100px}
+.store-header h2{font-size:clamp(40px,5vw,72px);font-weight:300}
+.store-header p{color:#777;font-size:14px;margin-top:20px;letter-spacing:1px}
 
-/* SPLIT */
-.split{display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden}
-.split-image{background-size:cover;background-position:center;position:relative;min-height:400px}
-.split-content{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
-.split-content .section-title{font-size:clamp(28px,3.5vw,48px)}
-@media(max-width:900px){.split{grid-template-columns:1fr}.split-image{min-height:320px}.split-content{padding:60px 32px}}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1200px;margin:0 auto}
+.product-card{padding:80px 60px;border-bottom:1px solid var(--cream);position:relative;overflow:hidden;transition:background .3s}
+.product-card:nth-child(odd){border-right:1px solid var(--cream)}
+.product-card:hover{background:var(--cream)}
+.product-card .product-num{font-family:'Playfair Display',serif;font-size:120px;color:var(--cream);position:absolute;top:-20px;right:20px;font-weight:700;line-height:1;pointer-events:none;transition:color .3s}
+.product-card:hover .product-num{color:rgba(201,169,110,.15)}
+.product-card h3{font-size:28px;font-weight:400;margin-bottom:8px;position:relative}
+.product-card .composition{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative}
+.product-card .purpose{font-size:14px;line-height:1.8;color:#666;max-width:400px;position:relative}
+.product-card .btn-gold{margin-top:30px;position:relative}
 
-/* IMAGE BREAK */
-.image-break{position:relative;width:100%;height:50vh;min-height:360px;max-height:560px;overflow:hidden}
-.image-break-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;will-change:transform}
-.image-break-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,251,247,.15),rgba(253,251,247,.6))}
-.image-break-text{position:absolute;bottom:0;left:0;right:0;padding:48px 64px;font-family:var(--serif);font-size:clamp(14px,1.5vw,18px);font-style:italic;color:var(--charcoal);background:linear-gradient(transparent,rgba(253,251,247,.5))}
-@media(max-width:768px){.image-break{height:40vh;min-height:280px}.image-break-text{padding:32px}}
+/* Wide product cards for asymmetric feel */
+.product-wide{grid-column:1/-1;padding:100px 80px;border-bottom:1px solid var(--cream);display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;position:relative;overflow:hidden;transition:background .3s}
+.product-wide:hover{background:var(--cream)}
+.product-wide .product-num{font-family:'Playfair Display',serif;font-size:160px;color:var(--cream);position:absolute;top:-30px;right:40px;font-weight:700;line-height:1;pointer-events:none}
+.product-wide h3{font-size:36px;font-weight:400;margin-bottom:8px;position:relative}
+.product-wide .composition{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;position:relative}
+.product-wide .purpose{font-size:15px;line-height:1.9;color:#666;position:relative}
 
-/* GOLD DIVIDER */
-.gold-divider{width:100%;height:1px;border:none;background:linear-gradient(90deg,transparent 5%,var(--gold) 50%,transparent 95%);opacity:.4;margin:0}
+.btn-gold{display:inline-block;padding:14px 40px;border:1px solid var(--gold);color:var(--charcoal);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:all .3s}
+.btn-gold:hover{background:var(--gold);color:#fff}
 
-/* PETALS GRID */
-.petals{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
-.petal{padding:48px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
-.petal:nth-child(3n){border-right:none}
-.petal:nth-child(4),.petal:nth-child(5){border-right:1px solid var(--border)}
-.petal:nth-child(5){border-right:none}
-.petal:hover{background:rgba(234,231,226,.2)}
-.petal-num{font-family:var(--serif);font-size:12px;color:var(--gold);letter-spacing:1px}
-.petal-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin:10px 0;transition:color .3s}
-.petal-body{font-size:14px;color:var(--light-gray);line-height:1.7}
-@media(max-width:768px){.petals{grid-template-columns:1fr}.petal{border-right:none!important}}
+/* Bloom Circle */
+.bloom{padding:200px 80px;background:var(--charcoal);color:#fff;position:relative;overflow:hidden}
+.bloom::before{content:'BLOOM';position:absolute;top:-30px;right:-10px;font-size:clamp(80px,12vw,200px);font-family:'Playfair Display',serif;color:rgba(201,169,110,.03);font-weight:700;pointer-events:none}
+.bloom-inner{max-width:900px;margin:0 auto}
+.bloom h2{font-size:clamp(40px,5vw,64px);font-weight:300;margin-bottom:16px}
+.bloom>p{color:rgba(255,255,255,.5);font-size:14px;line-height:1.8;max-width:500px;margin-bottom:80px}
+.bloom-steps{display:flex;flex-direction:column;gap:60px}
+.bloom-step{display:grid;grid-template-columns:60px 1fr;gap:40px;align-items:start}
+.bloom-step .step-num{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);font-weight:300}
+.bloom-step h4{font-size:20px;font-weight:400;margin-bottom:10px;color:var(--gold-light)}
+.bloom-step p{color:rgba(255,255,255,.55);font-size:14px;line-height:1.8}
 
-/* PRODUCT CARDS */
-.products{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:80px;border-top:1px solid var(--border)}
-.product{padding:56px 48px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .5s cubic-bezier(.22,1,.36,1);position:relative}
-.product:nth-child(2n){border-right:none}
-.product::after{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s}
-.product:hover{background:rgba(234,231,226,.15)}
-.product:hover::after{width:100%}
-.product-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:6px}
-.product-tag{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--light-gray);margin-bottom:16px}
-.product-body{font-size:14px;color:var(--warm-gray);line-height:1.8}
-@media(max-width:768px){.products{grid-template-columns:1fr}.product{border-right:none}}
+/* Transparency */
+.transparency{padding:180px 80px;text-align:center}
+.transparency h2{font-size:clamp(32px,4vw,52px);font-weight:300;margin-bottom:20px}
+.transparency .gold-line{margin:0 auto 40px}
+.transparency p{color:#666;font-size:15px;line-height:1.9;max-width:700px;margin:0 auto 20px}
+.transparency-flow{display:flex;justify-content:center;align-items:center;gap:30px;margin-top:60px;flex-wrap:wrap}
+.flow-item{padding:30px 40px;border:1px solid var(--cream);text-align:center;max-width:240px}
+.flow-item h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:4px}
+.flow-item .pct{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);margin:8px 0}
+.flow-item p{font-size:12px;color:#888;line-height:1.6}
+.flow-arrow{color:var(--gold);font-size:24px}
 
-/* BLOOM STEPS */
-.bloom-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
-.bloom-step{padding:56px 44px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);position:relative;transition:all .4s}
-.bloom-step:nth-child(3n){border-right:none}
-.bloom-step:hover{background:rgba(234,231,226,.2)}
-.bloom-num{font-family:var(--serif);font-size:64px;font-weight:400;color:var(--border);line-height:1;margin-bottom:24px;transition:color .4s}
-.bloom-step:hover .bloom-num{color:var(--gold)}
-.bloom-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--charcoal);margin-bottom:14px}
-.bloom-body{font-size:14px;color:var(--light-gray);line-height:1.7}
-@media(max-width:768px){.bloom-steps{grid-template-columns:1fr}.bloom-step{border-right:none}}
+/* Footer */
+footer{background:var(--charcoal);color:#fff;padding:100px 80px 60px;border-top:1px solid rgba(201,169,110,.15)}
+.footer-title{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:6px;text-align:center;margin-bottom:16px;color:var(--gold)}
+.footer-subtitle{text-align:center;color:rgba(255,255,255,.45);font-size:13px;letter-spacing:1px;margin-bottom:60px;max-width:600px;margin-left:auto;margin-right:auto}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-bottom:60px}
+.footer-col h4{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:4px}
+.footer-col .col-role{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;transition:color .3s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-copy{text-align:center;color:rgba(255,255,255,.3);font-size:12px;letter-spacing:.5px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
 
-/* TRANSPARENCY */
-.t-blocks{margin-top:80px}
-.t-block{padding:40px 0;border-bottom:1px solid var(--border);transition:padding-left .4s}
-.t-block:first-child{border-top:1px solid var(--border)}
-.t-block:hover{padding-left:16px}
-.t-block-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--charcoal);margin-bottom:10px}
-.t-block-body{font-size:15px;color:var(--warm-gray);line-height:1.8}
-.t-block-body strong{color:var(--charcoal)}
-
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
-.service{padding:48px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
-.service:nth-child(3n){border-right:none}
-.service:hover{background:rgba(234,231,226,.2);transform:translateY(-3px)}
-.service-name{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--charcoal);margin-bottom:12px}
-.service-body{font-size:13px;color:var(--light-gray);line-height:1.7}
-@media(max-width:768px){.services-grid{grid-template-columns:1fr}.service{border-right:none}}
-
-/* SEASONS */
-.seasons{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:80px;border-top:1px solid var(--border)}
-.season{padding:44px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
-.season:nth-child(2n){border-right:none}
-.season:hover{background:rgba(201,169,110,.04)}
-.season-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:10px}
-.season-body{font-size:14px;color:var(--warm-gray);line-height:1.8}
-.season-flag{margin-top:10px;font-size:13px;color:var(--light-gray);font-style:italic}
-@media(max-width:768px){.seasons{grid-template-columns:1fr}.season{border-right:none}}
-
-/* CTA */
-.cta{display:inline-block;font-family:var(--serif);font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:18px 48px;text-decoration:none;transition:all .4s;cursor:pointer;border:none}
-.cta-dark{background:var(--charcoal);color:var(--ivory)}
-.cta-dark:hover{background:#3d3a38;letter-spacing:4px}
-.cta-outline{background:transparent;color:var(--charcoal);border:1px solid var(--charcoal)}
-.cta-outline:hover{background:var(--charcoal);color:var(--ivory);letter-spacing:4px}
-.cta-group{margin-top:48px;display:flex;gap:20px;flex-wrap:wrap}
-
-/* ECOSYSTEM LINKS */
-.eco-links{display:flex;gap:48px;justify-content:center;margin-top:56px;flex-wrap:wrap}
-.eco-link{font-family:var(--serif);font-size:16px;color:var(--charcoal);text-decoration:none;border-bottom:1px solid var(--light-gray);padding-bottom:3px;transition:all .3s}
-.eco-link:hover{border-color:var(--gold)}
-
-/* CONTACT */
-.contact{text-align:center}
-.contact-body{font-size:16px;color:var(--warm-gray);max-width:560px;margin:0 auto;line-height:1.9}
-.contact-email{display:inline-block;margin-top:36px;font-family:var(--serif);font-size:20px;color:var(--charcoal);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px;transition:all .3s}
-.contact-email:hover{border-color:var(--charcoal);letter-spacing:1px}
-
-/* FOOTER */
-footer{padding:80px 48px;background:var(--ivory);border-top:1px solid var(--border)}
-.footer-inner{max-width:1200px;margin:0 auto;text-align:center}
-.footer-title{font-family:var(--serif);font-size:16px;letter-spacing:5px;text-transform:uppercase;color:var(--charcoal);margin-bottom:8px;font-weight:400}
-.footer-sub{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--light-gray);margin-bottom:48px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;text-align:left;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
-.footer-col-title{font-family:var(--serif);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#3d3a38;margin-bottom:14px}
-.footer-col-desc{font-size:11px;color:var(--light-gray);line-height:1.6;margin-bottom:14px}
-.footer-col ul{list-style:none;padding:0;font-size:12px;line-height:2.2}
-.footer-col a{color:var(--warm-gray);text-decoration:none;transition:color .3s}
-.footer-col a:hover{color:var(--charcoal)}
-.footer-copy{font-size:11px;color:#a39e99;letter-spacing:1px}
+@media(max-width:1024px){
+  .hero{padding:140px 40px 80px}
+  .hero-inner{grid-template-columns:1fr;gap:60px}
+  .store{padding:100px 40px}
+  .bloom{padding:140px 40px}
+  .transparency{padding:140px 40px}
+  .product-wide{grid-template-columns:1fr}
+  nav{padding:14px 30px}
+  nav .nav-links{gap:24px}
+  footer{padding:80px 40px 40px}
+  .footer-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+}
+@media(max-width:640px){
+  .hero{padding:120px 24px 60px}
+  .store{padding:80px 24px}
+  .product-grid{grid-template-columns:1fr}
+  .product-card:nth-child(odd){border-right:none}
+  .product-card{padding:60px 24px}
+  .product-wide{padding:60px 24px}
+  .bloom{padding:100px 24px}
+  .transparency{padding:100px 24px}
+  .petal-nav{gap:20px;padding:24px;flex-wrap:wrap}
+  nav .nav-links{display:none}
+  .transparency-flow{flex-direction:column}
+  footer{padding:60px 24px 30px}
+  .bloom-step{grid-template-columns:1fr;gap:10px}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Pure Wellness Love</a>
-    <ul class="nav-links">
-      <li><a href="#bloom">Learn</a></li>
-      <li><a href="#store">Shop</a></li>
-      <li><a href="#services">Participate</a></li>
-      <li><a href="#contact">Refer</a></li>
-    </ul>
-  </div>
+<div class="tracker-bar">THE LIVING LOVE COLLECTIVE &nbsp;·&nbsp; 142,305 / 1,000,000 FAMILIES ANCHORED IN POWER & PROTECTION</div>
+
+<nav id="mainNav">
+  <a href="#" class="logo">Pure Wellness Love</a>
+  <ul class="nav-links">
+    <li><a href="#store">Shop</a></li>
+    <li><a href="https://jack108510.github.io/dr-jasmine-site/">Learn</a></li>
+    <li><a href="#bloom">Participate</a></li>
+    <li><a href="https://jack108510.github.io/well-made-foundation/">Refer</a></li>
+  </ul>
 </nav>
 
-<!-- HERO -->
+<!-- 5-Petal Nav -->
+<div class="petal-nav">
+  <a href="#store"><div class="petal-label">Petal I</div><div class="petal-name">Store</div></a>
+  <a href="#"><div class="petal-label">Petal II</div><div class="petal-name">School</div></a>
+  <a href="#"><div class="petal-label">Petal III</div><div class="petal-name">Events</div></a>
+  <a href="#"><div class="petal-label">Petal IV</div><div class="petal-name">Services</div></a>
+  <a href="#bloom"><div class="petal-label">Petal V</div><div class="petal-name">Membership</div></a>
+</div>
+
+<!-- Hero -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">The Living Love Collective</p>
-    <h1>Pure Wellness<br>Love</h1>
-    <hr class="hero-divider">
-    <p class="hero-subtitle">Bring Wellness Home. The flagship sensory e-commerce experience. Candles, botanicals, and ritual kits crafted for the spaces where life unfolds.</p>
-  </div>
-</section>
-
-<!-- 5 PETALS -->
-<section>
-  <div class="section-inner">
-    <p class="section-label reveal">The Architecture</p>
-    <h2 class="section-title reveal">Five Petals</h2>
-    <hr class="section-rule reveal">
-    <p class="section-body reveal">Pure Wellness Love is organized into five living petals, each serving a distinct dimension of whole-family wellness.</p>
-
-    <div class="petals">
-      <div class="petal reveal reveal-d1">
-        <span class="petal-num">I</span>
-        <h3 class="petal-name">Store</h3>
-        <p class="petal-body">The sensory commerce experience. Candles, botanicals, and curated ritual kits designed for every room and every season.</p>
-      </div>
-      <div class="petal reveal reveal-d2">
-        <span class="petal-num">II</span>
-        <h3 class="petal-name">School</h3>
-        <p class="petal-body">Digital and in-person education. Sensory styling, material craft, and the art of bringing intentional living into the home.</p>
-      </div>
-      <div class="petal reveal reveal-d3">
-        <span class="petal-num">III</span>
-        <h3 class="petal-name">Events</h3>
-        <p class="petal-body">Seasonal gatherings, workshops, and community experiences aligned with the four-season solar calendar.</p>
-      </div>
-      <div class="petal reveal reveal-d4">
-        <span class="petal-num">IV</span>
-        <h3 class="petal-name">Services</h3>
-        <p class="petal-body">Sensory styling workshops, material styling courses, and digital interactive classes for individuals and households.</p>
-      </div>
-      <div class="petal reveal reveal-d5">
-        <span class="petal-num">V</span>
-        <h3 class="petal-name">Membership</h3>
-        <p class="petal-body">The Bloom Circle. A white-glove household registry with milestone tracking, complimentary botanicals, and exclusive blessings.</p>
-      </div>
+  <div class="hero-inner">
+    <div class="hero-text reveal-left">
+      <div class="label">The Branches</div>
+      <h1>Pure<br>Wellness<br><em>Love</em></h1>
+      <div class="gold-line"></div>
+      <p>A sensory wellness experience rooted in lineage, land, and living devotion. Each product carries an energetic purpose — not luxury for appearance, but beauty that serves.</p>
+    </div>
+    <div class="hero-visual reveal-right">
+      <img src="images/woman-field-mountains.jpg" alt="Pure wellness">
     </div>
   </div>
 </section>
 
-<!-- IMAGE BREAK: HANDS PLANTING -->
-<div class="image-break reveal">
-  <div class="image-break-bg" style="background-image:url('images/hands-planting.jpg')"></div>
-  <div class="image-break-overlay"></div>
-  <div class="image-break-text">Where intention meets craft</div>
-</div>
+<div class="gold-divider"></div>
 
-<!-- THE STORE -->
-<section id="store">
-  <div class="section-inner">
-    <p class="section-label reveal">Shop</p>
-    <h2 class="section-title reveal">The Store</h2>
-    <hr class="section-rule reveal">
-    <p class="section-body reveal">Each product is an editorial entry, a sensory story designed for a specific space, season, and moment in the life of a household.</p>
-    <div class="cta-group reveal">
-      <a href="#store" class="cta cta-dark">Shop Now</a>
-      <a href="#bloom" class="cta cta-outline">Join the Bloom Circle</a>
+<!-- Store -->
+<section class="store" id="store">
+  <div class="store-header reveal">
+    <div class="label">The Lifestyle Store</div>
+    <h2>The Collection</h2>
+    <p>Six product lines. Each designed with intention, composition, and energetic architecture.</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card reveal">
+      <div class="product-num">01</div>
+      <h3>Pikake Sampaguita<br>Jasmine Line</h3>
+      <div class="composition">Pikake · Sampaguita · Jasmine</div>
+      <p class="purpose">Anchors courage, clarity, foundational safety. The signature scent of the Collective — rooted in the Filipino jasmine, carried forward in devotion.</p>
+      <a href="#" class="btn-gold">Explore</a>
     </div>
-
-    <div class="products">
-      <div class="product reveal">
-        <h3 class="product-name">Pikake Sampaguita Jasmine Line</h3>
-        <p class="product-tag">For the living room</p>
-        <p class="product-body">Organic candle wax, pure jasmine botanical oils, aura essences. Establishes courage, spatial safety, environmental purity. The signature scent of the home.</p>
+    <div class="product-card reveal">
+      <div class="product-num">02</div>
+      <h3>Lokelani Heavenly<br>Rose Line</h3>
+      <div class="composition">Lokelani · Rose · Heart Opening</div>
+      <p class="purpose">Deep heart-chakra opening, ancestral lineage honor. The Maui rose meets the sacred — for moments that require tenderness amplified.</p>
+      <a href="#" class="btn-gold">Explore</a>
+    </div>
+    <div class="product-wide reveal">
+      <div class="product-num">03</div>
+      <div>
+        <h3>The Home Blessing Kit</h3>
+        <div class="composition">Spatial Reset · Sacred Space · Renewal</div>
+        <p class="purpose">Spatial resets after moving or winter quiet. A curated collection of sensory elements designed to consecrate your living space — every room, every threshold, every corner where life unfolds.</p>
+        <a href="#" class="btn-gold">Explore</a>
       </div>
-      <div class="product reveal">
-        <h3 class="product-name">Lokelani Heavenly Rose Line</h3>
-        <p class="product-tag">Deep heart-chakra activation</p>
-        <p class="product-body">Cottage rose base layered over velvet sandalwood extract. Devotional lineage honor, ancestral connection work. For the spaces where family gathers.</p>
+      <div></div>
+    </div>
+    <div class="product-wide reveal">
+      <div class="product-num">04</div>
+      <div>
+        <h3>The New Business<br>Launch Kit</h3>
+        <div class="composition">Structure · Vision · Financial Abundance</div>
+        <p class="purpose">Structural organization, professional visioning, financial abundance. For the sacred act of beginning — when your work becomes your offering.</p>
+        <a href="#" class="btn-gold">Explore</a>
       </div>
-      <div class="product reveal">
-        <h3 class="product-name">The Home Blessing Kit</h3>
-        <p class="product-tag">For spatial resets</p>
-        <p class="product-body">Jasmine candle, raw minerals, energy-clearing mist, Feng Shui blueprints. For spatial resets after relocation or winter quiet. A complete ceremony for the home.</p>
-      </div>
-      <div class="product reveal">
-        <h3 class="product-name">The New Business Launch Kit</h3>
-        <p class="product-tag">Structural organization and wealth abundance</p>
-        <p class="product-body">Citrus and jasmine wax blend, organic linen desk wraps, vision-mapping journals. Professional visions and structural organization for new ventures.</p>
-      </div>
-      <div class="product reveal">
-        <h3 class="product-name">The Pillar of Honor (Bayani) Kit</h3>
-        <p class="product-tag">For fathers, sons, uncles</p>
-        <p class="product-body">Cedarwood and jasmine essences, raw leather legacy journal, dialogue cards. Relationship transparency and protective honor. The masculine pillar, made tangible.</p>
-      </div>
-      <div class="product reveal">
-        <h3 class="product-name">The Lokelani Grace Transition Kit</h3>
-        <p class="product-tag">End-of-life vibrational care</p>
-        <p class="product-body">Unscented organic beeswax prayer candles, hand-woven bedside comfort wraps. End-of-life care, vibrational care, dignity. For the most sacred transitions.</p>
-      </div>
+      <div></div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-num">05</div>
+      <h3>The Pillar of Honor<br>(Bayani) Kit</h3>
+      <div class="composition">Bayani · Masculine Lineage · Honor</div>
+      <p class="purpose">For fathers, sons, uncles. Masculine lineage stories held in sensory form — because the pillars of our families deserve to be honored in beauty.</p>
+      <a href="#" class="btn-gold">Explore</a>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-num">06</div>
+      <h3>The Lokelani Grace<br>Transition Kit</h3>
+      <div class="composition">End of Life · Peace · Dignity</div>
+      <p class="purpose">End-of-life vibrational care, peace, dignity. The most sacred transition, held with grace. For the ones we are releasing, and the ones staying.</p>
+      <a href="#" class="btn-gold">Explore</a>
     </div>
   </div>
 </section>
 
-<!-- SPLIT: FRIENDS SEA -->
-<div class="split reveal">
-  <div class="split-content" style="background:var(--cream)">
-    <p class="section-label">Membership</p>
-    <h2 class="section-title">Bloom Circle</h2>
-    <hr class="section-rule">
-    <p class="section-body">The inner circle of Pure Wellness Love. Members receive milestone tracking, complimentary botanicals, exclusive blessings voiced by Dr. Jasmine, and first access to seasonal kits and workshops.</p>
-  </div>
-  <div class="split-image" style="background-image:url('images/friends-sea.jpg')"></div>
-</div>
-
-<!-- BLOOM CIRCLE -->
-<section id="bloom">
-  <div class="section-inner">
-    <p class="section-label reveal">Learn</p>
-    <h2 class="section-title reveal">The Bloom Circle Household Registry</h2>
-    <hr class="section-rule reveal">
-    <p class="section-body reveal">A white-glove, multi-generational household registry. Upon joining, families log up to five critical annual lineage dates and receive curated sensory milestones throughout the year.</p>
-
+<!-- Bloom Circle -->
+<section class="bloom" id="bloom">
+  <div class="bloom-inner">
+    <div class="reveal">
+      <div class="label" style="color:var(--gold)">Household Registry</div>
+      <h2>Bloom Circle</h2>
+      <div class="gold-line"></div>
+      <p>A living registry of the moments that shape your family's story. Never miss a milestone. Never forget a lineage date.</p>
+    </div>
     <div class="bloom-steps">
-      <div class="bloom-step reveal reveal-d1">
-        <div class="bloom-num">I</div>
-        <h3 class="bloom-title">Log Your Lineage Dates</h3>
-        <p class="bloom-body">Maternal and paternal birthdays. Wedding and partnership anniversaries. Business launch dates. Sacred ancestral remembrance days. Up to five dates per household.</p>
+      <div class="bloom-step reveal">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Log Your Lineage</h4>
+          <p>Enter up to five vital lineage dates — birthdays, anniversaries, memorials, transitions. The dates that anchor your family's story.</p>
+        </div>
       </div>
-      <div class="bloom-step reveal reveal-d2">
-        <div class="bloom-num">II</div>
-        <h3 class="bloom-title">14 Days Prior</h3>
-        <p class="bloom-body">An automated sensory notice arrives, accompanied by a complimentary mini candle or botanical. A gentle, physical reminder that a sacred moment is approaching.</p>
+      <div class="bloom-step reveal">
+        <div class="step-num">2</div>
+        <div>
+          <h4>The 14-Day Notice</h4>
+          <p>Fourteen days prior to each milestone, receive an automated sensory notice — and a complimentary mini item curated for the occasion.</p>
+        </div>
       </div>
-      <div class="bloom-step reveal reveal-d3">
-        <div class="bloom-num">III</div>
-        <h3 class="bloom-title">On the Milestone Day</h3>
-        <p class="bloom-body">An exclusive five-minute somatic audio or written blessing track, voiced by Dr. Jasmine. A personal, spoken honoring of the moment.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- IMAGE BREAK: GREEN HILLS -->
-<div class="image-break reveal">
-  <div class="image-break-bg" style="background-image:url('images/green-hills.jpg')"></div>
-  <div class="image-break-overlay"></div>
-</div>
-
-<!-- FINANCIAL TRANSPARENCY -->
-<section>
-  <div class="section-inner">
-    <p class="section-label reveal">Where It Goes</p>
-    <h2 class="section-title reveal">Financial Transparency</h2>
-    <hr class="section-rule reveal">
-
-    <div class="t-blocks">
-      <div class="t-block reveal">
-        <h3 class="t-block-title">10% of Gross Store Profits</h3>
-        <p class="t-block-body">Directed to the <strong>WellMade Foundation</strong>.</p>
-      </div>
-      <div class="t-block reveal">
-        <h3 class="t-block-title">70% to Sampaguita Scholarship</h3>
-        <p class="t-block-body">Tuition funds supporting the next generation of scholars and leaders.</p>
-      </div>
-      <div class="t-block reveal">
-        <h3 class="t-block-title">30% to Local Operations</h3>
-        <p class="t-block-body">Local event operations and <strong>raw materials</strong> for community programming.</p>
+      <div class="bloom-step reveal">
+        <div class="step-num">3</div>
+        <div>
+          <h4>The Blessing</h4>
+          <p>On the milestone day itself, receive an exclusive 5-minute somatic audio blessing — spoken by Dr. Jasmine, carried by the Living Love Modality.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IMAGE BREAK: WOMAN FIELD -->
-<div class="image-break reveal">
-  <div class="image-break-bg" style="background-image:url('images/woman-field-mountains.jpg')"></div>
-  <div class="image-break-overlay"></div>
-  <div class="image-break-text">Hands-on experiences in sensory craft and material styling</div>
-</div>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <p class="section-label reveal">Participate</p>
-    <h2 class="section-title reveal">Services</h2>
-    <hr class="section-rule reveal">
-    <p class="section-body reveal">Hands-on experiences in sensory craft, material styling, and digital education. Each service deepens the relationship between intention and living space.</p>
-
-    <div class="services-grid">
-      <div class="service reveal reveal-d1">
-        <h3 class="service-name">Sensory Styling Workshops</h3>
-        <p class="service-body">Learn to curate the sensory landscape of your home through scent, light, and material intention.</p>
-      </div>
-      <div class="service reveal reveal-d2">
-        <h3 class="service-name">Material Styling Courses</h3>
-        <p class="service-body">Deep-dive instruction in botanical craft, wax formulation, and the art of spatial composition.</p>
-      </div>
-      <div class="service reveal reveal-d3">
-        <h3 class="service-name">Digital Interactive Classes</h3>
-        <p class="service-body">Live and recorded sessions bringing the school petal into any home, anywhere.</p>
-      </div>
+<!-- Financial Transparency -->
+<section class="transparency" id="transparency">
+  <div class="reveal">
+    <div class="label">Financial Transparency</div>
+    <h2>Where It Flows</h2>
+    <div class="gold-line" style="margin:0 auto 40px"></div>
+    <p>10% of gross revenue from every purchase flows directly to the WellMade Foundation. This is not charity. This is architecture.</p>
+  </div>
+  <div class="transparency-flow reveal">
+    <div class="flow-item">
+      <h4>Every Purchase</h4>
+      <div class="pct">10%</div>
+      <p>of gross revenue</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <h4>Sampaguita Scholarship</h4>
+      <div class="pct">70%</div>
+      <p>of foundation allocation</p>
+    </div>
+    <div class="flow-item">
+      <h4>Local Operations</h4>
+      <div class="pct">30%</div>
+      <p>community program support</p>
     </div>
   </div>
 </section>
 
-<hr class="gold-divider">
-
-<!-- SEASONAL PROGRAMMING -->
-<section>
-  <div class="section-inner">
-    <p class="section-label reveal">The Rhythm</p>
-    <h2 class="section-title reveal">Seasonal Programming</h2>
-    <hr class="section-rule reveal">
-    <p class="section-body reveal">A four-season solar calendar guides the store, services, and events of Pure Wellness Love, aligning household rituals with the natural world.</p>
-
-    <div class="seasons">
-      <div class="season reveal reveal-d1">
-        <h3 class="season-name">Spring</h3>
-        <p class="season-body">Home Blessing Kit focus. Spatial resets, clearing ceremonies, and the renewal of the living environment.</p>
-        <p class="season-flag">Flagship: The Home Blessing Kit</p>
-      </div>
-      <div class="season reveal reveal-d2">
-        <h3 class="season-name">Summer</h3>
-        <p class="season-body">Heavy programmatic tracking. Community workshops, sensory styling intensives, and Bloom Circle milestone celebrations.</p>
-      </div>
-      <div class="season reveal reveal-d3">
-        <h3 class="season-name">Fall</h3>
-        <p class="season-body">New Business Launch Kit deployment. Professional vision-mapping, structural organization, and wealth abundance rituals.</p>
-        <p class="season-flag">Flagship: The New Business Launch Kit</p>
-      </div>
-      <div class="season reveal reveal-d4">
-        <h3 class="season-name">Winter</h3>
-        <p class="season-body">Lokelani Grace Transition Kit. Sacred Rosary Transition Framework. Organic beeswax lines. For the most sacred and quiet season.</p>
-        <p class="season-flag">Flagship: The Lokelani Grace Transition Kit</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ECOSYSTEM -->
-<section>
-  <div class="section-inner" style="text-align:center">
-    <p class="section-label reveal">The Ecosystem</p>
-    <h2 class="section-title reveal">The Living Love Collective</h2>
-    <hr class="section-rule reveal" style="margin-left:auto;margin-right:auto">
-    <p class="section-body reveal" style="max-width:600px;margin:0 auto">Pure Wellness Love is one of three engines in the Living Love Collective.</p>
-    <div class="eco-links reveal">
-      <a href="https://jack108510.github.io/dr-jasmine-site/" class="eco-link">Dr. Jasmine — The Root</a>
-      <a href="https://jack108510.github.io/well-made-foundation/" class="eco-link">Well Made Foundation — The Soil</a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="section-inner">
-    <p class="section-label reveal">Connect</p>
-    <h2 class="section-title reveal">Contact</h2>
-    <hr class="section-rule reveal" style="margin-left:auto;margin-right:auto">
-    <p class="contact-body reveal">To shop, join the Bloom Circle, participate in a workshop, or refer a household, reach out. Every conversation is the beginning of something generational.</p>
-    <a href="mailto:contact@purewellnesslove.com" class="contact-email reveal">contact@purewellnesslove.com</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-<div class="footer-inner">
-  <h2 class="footer-title">The Living Love Collective</h2>
-  <p class="footer-sub">An editorial ecosystem of pure living, whole-family generational care, and conscious leadership.</p>
+  <div class="footer-title">T H E &nbsp; L I V I N G &nbsp; L O V E &nbsp; C O L L E C T I V E</div>
+  <div class="footer-subtitle">An editorial ecosystem of pure living, whole-family generational care, and conscious leadership.</div>
   <div class="footer-grid">
     <div class="footer-col">
-      <h3 class="footer-col-title">Pure Wellness Love</h3>
-      <p class="footer-col-desc">The Branches (Commerce &amp; Sanctuary Elements)</p>
+      <h4><a href="https://jack108510.github.io/pure-wellness-joy/" style="color:#fff;text-decoration:none">PURE WELLNESS LOVE</a></h4>
+      <div class="col-role">The Branches</div>
       <ul>
-        <li><a href="https://jack108510.github.io/pure-wellness-joy/#store">Shop The Lifestyle Store</a></li>
-        <li><a href="https://jack108510.github.io/pure-wellness-joy/#bloom">Join The Bloom Circle Registry</a></li>
-        <li><a href="https://jack108510.github.io/pure-wellness-joy/#store">Explore Milestone &amp; Ritual Kits</a></li>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/">Shop The Lifestyle Store</a></li>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/">Join The Bloom Circle</a></li>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/">Explore Milestone Kits</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h3 class="footer-col-title">Well Made Foundation</h3>
-      <p class="footer-col-desc">The Soil (Humanitarian Shield &amp; Family Care)</p>
+      <h4><a href="https://jack108510.github.io/well-made-foundation/" style="color:#fff;text-decoration:none">WELL MADE FOUNDATION</a></h4>
+      <div class="col-role">The Soil</div>
       <ul>
-        <li><a href="https://jack108510.github.io/well-made-foundation/#membership">Donate: $30 Lifetime Family Entry</a></li>
-        <li><a href="https://jack108510.github.io/well-made-foundation/#programs">Mothers &amp; Daughters / Moms &amp; Dads Empowered</a></li>
-        <li><a href="https://jack108510.github.io/well-made-foundation/#programs">Participate in the Family Pentathlon</a></li>
+        <li><a href="https://jack108510.github.io/well-made-foundation/">Donate: $30 Lifetime Entry</a></li>
+        <li><a href="https://jack108510.github.io/well-made-foundation/">MADE Programs</a></li>
+        <li><a href="https://jack108510.github.io/well-made-foundation/">Family Pentathlon</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h3 class="footer-col-title">Dr. Jasmine</h3>
-      <p class="footer-col-desc">The Root (Clinical Somatics &amp; Personal Authority)</p>
+      <h4><a href="https://jack108510.github.io/dr-jasmine-site/" style="color:#fff;text-decoration:none">DR. JASMINE</a></h4>
+      <div class="col-role">The Root</div>
       <ul>
-        <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings">Learn About the Divine Spark Platform</a></li>
-        <li><a href="https://jack108510.github.io/dr-jasmine-site/#practice">Advanced Somatic Practitioner Frameworks</a></li>
-        <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings">Executive Leadership Summits &amp; Retreats</a></li>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/">Divine Spark Platform</a></li>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/">Somatic Practitioner Frameworks</a></li>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/">Executive Leadership Summits</a></li>
       </ul>
     </div>
   </div>
-  <p class="footer-copy">&copy; 2026 The Living Love Collective. Founded and guided with complete devotion by Dr. Jasmine Therese Esguerra.</p>
-</div>
+  <div class="footer-copy">&copy; 2026 The Living Love Collective. Founded and guided with complete devotion by Dr. Jasmine Therese Esguerra.</div>
 </footer>
 
 <script>
-const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-const hb=document.getElementById('heroBg');
-let tk=false;
-window.addEventListener('scroll',()=>{if(!tk){requestAnimationFrame(()=>{const s=window.pageYOffset;if(hb&&s<window.innerHeight)hb.style.transform=`translateY(${s*.35}px)`;tk=false});tk=true}});
-
-document.querySelectorAll('.image-break-bg').forEach(bg=>{const p=bg.parentElement;let t=false;window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{const r=p.getBoundingClientRect();bg.style.transform=`translateY(${((r.top+r.height/2-window.innerHeight/2)*.12)}px)`;t=false});t=true}})});
-
-let ls=0;const nv=document.querySelector('nav');
-window.addEventListener('scroll',()=>{const c=window.pageYOffset;if(c>ls&&c>100)nv.style.transform='translateY(-100%)';else nv.style.transform='translateY(0)';ls=c});
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>80)});
 </script>
 </body>
 </html>
