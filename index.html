@@ -5,478 +5,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pure Wellness Love | Bring Wellness Home</title>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #fdfbf7;
-    color: #1a1918;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  ::selection { background: #1a1918; color: #fdfbf7; }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(253, 251, 247, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid #eae7e2;
-    transition: transform 0.3s ease;
-  }
-  .nav-inner {
-    max-width: 1400px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 40px;
-  }
-  .nav-logo {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
-    color: #1a1918; text-decoration: none; font-weight: 400;
-    transition: letter-spacing 0.3s ease;
-  }
-  .nav-logo:hover { letter-spacing: 5px; }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: #4a4643; text-decoration: none; transition: color 0.3s, letter-spacing 0.3s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
-    background: #1a1918;
-    transition: width 0.3s ease;
-  }
-  .nav-links a:hover { color: #1a1918; letter-spacing: 3px; }
-  .nav-links a:hover::after { width: 100%; }
-  @media (max-width: 640px) {
-    .nav-inner { padding: 14px 20px; }
-    .nav-links { gap: 20px; }
-    .nav-links a { font-size: 11px; letter-spacing: 1.5px; }
-    .nav-logo { font-size: 12px; }
-  }
+:root{
+  --ivory:#fdfbf7;--charcoal:#1a1a1a;--gold:#c9a96e;--gold-light:#d4bc8a;
+  --cream:#f5f0e8;--warm-gray:#4a4643;--light-gray:#76716d;--border:#eae7e2;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
 
-  /* EDITORIAL IMAGES */
-  .editorial-img { width: 100%; display: block; object-fit: cover; }
-  .img-full { width: 100%; max-height: 520px; object-fit: cover; }
-  .img-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .img-split img { width: 100%; height: 400px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-  .img-split img:hover { transform: scale(1.02); }
-  .img-contained { max-width: 900px; margin: 0 auto; display: block; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-  .img-contained:hover { transform: scale(1.01); }
-  .img-caption {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 11px; font-style: italic; color: #76716d;
-    text-align: center; padding: 16px 0; letter-spacing: 0.5px;
-  }
-  @media (max-width: 768px) {
-    .img-split { grid-template-columns: 1fr; }
-    .img-split img { height: 280px; }
-    .img-full { max-height: 360px; }
-  }
+body{font-family:var(--sans);background:var(--ivory);color:var(--charcoal);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--charcoal);color:var(--ivory)}
 
-  /* FULL-WIDTH IMAGE BREAK */
-  .image-break {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    min-height: 320px;
-    max-height: 560px;
-    overflow: hidden;
-  }
-  .image-break img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .image-break .overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(253,251,247,0.15), rgba(253,251,247,0.5));
-  }
-  .image-break .image-break-text {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 40px;
-    text-align: center;
-  }
-  .image-break .image-break-text p {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 13px; font-style: italic; color: #4a4643;
-    letter-spacing: 1px;
-  }
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+.reveal-d5{transition-delay:.5s}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 140px 40px 120px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: url('images/family-beach-sunset.jpg') center/cover no-repeat;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom,
-      rgba(253,251,247,0.55) 0%,
-      rgba(253,251,247,0.75) 40%,
-      rgba(253,251,247,0.92) 100%
-    );
-  }
-  .hero-content { max-width: 800px; position: relative; z-index: 2; }
-  .hero-eyebrow {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-    color: #76716d; margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 1s 0.3s forwards;
-  }
-  .hero h1 {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 400; line-height: 1.05;
-    letter-spacing: -1px; color: #1a1918;
-    margin-bottom: 40px;
-    opacity: 0; animation: fadeUp 1s 0.5s forwards;
-  }
-  .hero-rule {
-    width: 0; height: 1px; background: linear-gradient(90deg, transparent, #b8973e, transparent);
-    margin: 0 auto 40px; border: none;
-    animation: goldLine 2s 1s forwards;
-  }
-  @keyframes goldLine { to { width: 120px; } }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-subtitle {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px; font-style: italic;
-    color: #4a4643; line-height: 1.8; max-width: 600px; margin: 0 auto;
-    opacity: 0; animation: fadeUp 1s 1.2s forwards;
-  }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(234,231,226,.6);transition:transform .3s}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 48px}
+.nav-logo{font-family:var(--serif);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--charcoal);text-decoration:none;transition:letter-spacing .4s}
+.nav-logo:hover{letter-spacing:6px}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:var(--serif);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--warm-gray);text-decoration:none;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-links a:hover::after{width:100%}
+@media(max-width:768px){.nav-inner{padding:14px 24px}.nav-links{gap:24px}.nav-links a{font-size:10px}.nav-logo{font-size:11px}}
 
-  /* SECTIONS */
-  section { padding: 120px 40px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-    color: #76716d; margin-bottom: 24px;
-  }
-  .section-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: clamp(32px, 4.5vw, 52px);
-    font-weight: 400; line-height: 1.15;
-    color: #1a1918; margin-bottom: 24px;
-  }
-  .section-rule { width: 40px; height: 1px; background: #a39e99; margin-bottom: 40px; border: none; }
-  .section-body { font-size: 16px; color: #4a4643; line-height: 1.8; max-width: 680px; }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 48px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:-80px;background:url('images/family-beach-sunset.jpg') center/cover no-repeat;will-change:transform}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,251,247,.45) 0%,rgba(253,251,247,.65) 40%,rgba(253,251,247,.92) 100%)}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{font-family:var(--serif);font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--light-gray);margin-bottom:40px}
+.hero h1{font-family:var(--serif);font-size:clamp(48px,8vw,100px);font-weight:400;line-height:1.05;letter-spacing:-2px;color:var(--charcoal);margin-bottom:48px}
+.hero-divider{width:80px;height:1px;border:none;margin:0 auto 48px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:goldPulse 4s ease-in-out infinite}
+@keyframes goldPulse{0%,100%{width:80px;opacity:.6}50%{width:140px;opacity:1}}
+.hero-subtitle{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--warm-gray);line-height:1.9;max-width:640px;margin:0 auto}
 
-  /* 5-PETAL LAYOUT */
-  .petals-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; margin-top: 60px;
-    border-top: 1px solid #eae7e2;
-  }
-  .petal-item {
-    padding: 40px 36px; border-bottom: 1px solid #eae7e2;
-    border-right: 1px solid #eae7e2;
-    transition: background 0.4s ease;
-  }
-  .petal-item:hover { background: rgba(234, 231, 226, 0.3); }
-  .petal-item:nth-child(3n) { border-right: none; }
-  .petal-item:nth-child(4),
-  .petal-item:nth-child(5) { border-right: 1px solid #eae7e2; }
-  .petal-item:nth-child(5) { border-right: none; }
-  .petal-num {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 12px; color: #a39e99; letter-spacing: 1px;
-  }
-  .petal-name {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 22px; font-weight: 400; color: #1a1918;
-    margin: 8px 0;
-    transition: color 0.3s;
-  }
-  .petal-item:hover .petal-name { color: #3d3a38; }
-  .petal-body { font-size: 14px; color: #76716d; line-height: 1.7; }
-  @media (max-width: 768px) {
-    .petals-grid { grid-template-columns: 1fr; }
-    .petal-item { border-right: none !important; }
-  }
+/* SECTIONS */
+section{padding:140px 48px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-family:var(--serif);font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
+.section-title{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;color:var(--charcoal);margin-bottom:28px}
+.section-rule{width:48px;height:1px;background:var(--gold);margin-bottom:48px;border:none}
+.section-body{font-family:var(--sans);font-size:16px;color:var(--warm-gray);line-height:1.9;max-width:640px}
 
-  /* PRODUCT CATALOG */
-  .catalog-list { margin-top: 60px; }
-  .catalog-item {
-    padding: 48px 0; border-bottom: 1px solid #eae7e2;
-    transition: background 0.4s ease;
-    position: relative;
-  }
-  .catalog-item:first-child { border-top: 1px solid #eae7e2; }
-  .catalog-item:nth-child(even) { background: rgba(234, 231, 226, 0.15); }
-  .catalog-item:hover { background: rgba(234, 231, 226, 0.3); }
-  .catalog-name {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 26px; font-weight: 400; color: #1a1918;
-    margin-bottom: 8px;
-    transition: letter-spacing 0.3s;
-  }
-  .catalog-item:hover .catalog-name { letter-spacing: 0.5px; }
-  .catalog-tagline {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px; font-style: italic; color: #76716d;
-    margin-bottom: 16px;
-  }
-  .catalog-body { font-size: 15px; color: #4a4643; line-height: 1.8; max-width: 720px; }
-  .catalog-item::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: transparent;
-    transition: background 0.4s;
-  }
-  .catalog-item:hover::before { background: #b8973e; }
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden}
+.split-image{background-size:cover;background-position:center;position:relative;min-height:400px}
+.split-content{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+.split-content .section-title{font-size:clamp(28px,3.5vw,48px)}
+@media(max-width:900px){.split{grid-template-columns:1fr}.split-image{min-height:320px}.split-content{padding:60px 32px}}
 
-  /* BLOOM CIRCLE */
-  .bloom-steps {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; margin-top: 80px;
-    border-top: 1px solid #eae7e2;
-  }
-  .bloom-step {
-    padding: 48px 36px;
-    border-bottom: 1px solid #eae7e2;
-    border-right: 1px solid #eae7e2;
-    position: relative;
-    transition: background 0.4s;
-  }
-  .bloom-step:nth-child(3n) { border-right: none; }
-  .bloom-step:hover { background: rgba(234, 231, 226, 0.25); }
-  .bloom-step-num {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 64px; font-weight: 400; color: #eae7e2;
-    line-height: 1; margin-bottom: 20px;
-    transition: color 0.4s;
-  }
-  .bloom-step:hover .bloom-step-num { color: #d4cfc9; }
-  .bloom-step-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px; font-weight: 400; color: #1a1918;
-    margin-bottom: 12px;
-  }
-  .bloom-step-body { font-size: 14px; color: #76716d; line-height: 1.7; }
-  .bloom-step-connector {
-    position: absolute; right: -20px; top: 50%;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px; color: #d4cfc9;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-  .bloom-step:nth-child(3n) .bloom-step-connector { display: none; }
-  @media (max-width: 768px) {
-    .bloom-steps { grid-template-columns: 1fr; }
-    .bloom-step { border-right: none; }
-    .bloom-step-connector { display: none; }
-  }
+/* IMAGE BREAK */
+.image-break{position:relative;width:100%;height:50vh;min-height:360px;max-height:560px;overflow:hidden}
+.image-break-bg{position:absolute;inset:-40px;background-size:cover;background-position:center;will-change:transform}
+.image-break-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,251,247,.15),rgba(253,251,247,.6))}
+.image-break-text{position:absolute;bottom:0;left:0;right:0;padding:48px 64px;font-family:var(--serif);font-size:clamp(14px,1.5vw,18px);font-style:italic;color:var(--charcoal);background:linear-gradient(transparent,rgba(253,251,247,.5))}
+@media(max-width:768px){.image-break{height:40vh;min-height:280px}.image-break-text{padding:32px}}
 
-  /* BLOOM CIRCLE VISUAL BANNER */
-  .bloom-banner {
-    position: relative;
-    width: 100%;
-    height: 40vh;
-    min-height: 280px;
-    max-height: 440px;
-    overflow: hidden;
-  }
-  .bloom-banner img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .bloom-banner .overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(253,251,247,0.3), rgba(253,251,247,0.7));
-  }
-  .bloom-banner-text {
-    position: absolute; bottom: 48px; left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-  }
-  .bloom-banner-text p {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px; font-style: italic; color: #4a4643;
-    letter-spacing: 1px;
-  }
+/* GOLD DIVIDER */
+.gold-divider{width:100%;height:1px;border:none;background:linear-gradient(90deg,transparent 5%,var(--gold) 50%,transparent 95%);opacity:.4;margin:0}
 
-  /* DARK SECTION */
-  .dark-section { background: #1a1918; color: #fdfbf7; }
-  .dark-section .section-label { color: #76716d; }
-  .dark-section .section-title { color: #fdfbf7; }
-  .dark-section .section-body { color: #a39e99; }
-  .dark-section .section-rule { background: #4a4643; }
+/* PETALS GRID */
+.petals{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
+.petal{padding:48px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
+.petal:nth-child(3n){border-right:none}
+.petal:nth-child(4),.petal:nth-child(5){border-right:1px solid var(--border)}
+.petal:nth-child(5){border-right:none}
+.petal:hover{background:rgba(234,231,226,.2)}
+.petal-num{font-family:var(--serif);font-size:12px;color:var(--gold);letter-spacing:1px}
+.petal-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin:10px 0;transition:color .3s}
+.petal-body{font-size:14px;color:var(--light-gray);line-height:1.7}
+@media(max-width:768px){.petals{grid-template-columns:1fr}.petal{border-right:none!important}}
 
-  /* TRANSPARENCY */
-  .transparency-blocks { margin-top: 60px; }
-  .t-block { padding: 40px 0; border-bottom: 1px solid #eae7e2; transition: padding-left 0.4s; }
-  .t-block:first-child { border-top: 1px solid #eae7e2; }
-  .t-block:hover { padding-left: 16px; }
-  .t-block-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px; font-weight: 400; color: #1a1918;
-    margin-bottom: 8px;
-  }
-  .t-block-flow { font-size: 14px; color: #4a4643; line-height: 1.8; }
-  .t-block-flow strong { color: #1a1918; font-weight: 500; }
+/* PRODUCT CARDS */
+.products{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:80px;border-top:1px solid var(--border)}
+.product{padding:56px 48px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .5s cubic-bezier(.22,1,.36,1);position:relative}
+.product:nth-child(2n){border-right:none}
+.product::after{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s}
+.product:hover{background:rgba(234,231,226,.15)}
+.product:hover::after{width:100%}
+.product-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:6px}
+.product-tag{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--light-gray);margin-bottom:16px}
+.product-body{font-size:14px;color:var(--warm-gray);line-height:1.8}
+@media(max-width:768px){.products{grid-template-columns:1fr}.product{border-right:none}}
 
-  /* SERVICES */
-  .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; margin-top: 60px;
-    border-top: 1px solid #eae7e2;
-  }
-  .service-item {
-    padding: 36px; border-bottom: 1px solid #eae7e2;
-    border-right: 1px solid #eae7e2;
-    transition: background 0.4s;
-  }
-  .service-item:hover { background: rgba(234, 231, 226, 0.25); }
-  .service-item:nth-child(3n) { border-right: none; }
-  .service-name {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px; font-weight: 400; color: #1a1918;
-    margin-bottom: 8px;
-  }
-  .service-body { font-size: 13px; color: #76716d; line-height: 1.7; }
-  @media (max-width: 640px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .service-item { border-right: none; }
-  }
+/* BLOOM STEPS */
+.bloom-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
+.bloom-step{padding:56px 44px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);position:relative;transition:all .4s}
+.bloom-step:nth-child(3n){border-right:none}
+.bloom-step:hover{background:rgba(234,231,226,.2)}
+.bloom-num{font-family:var(--serif);font-size:64px;font-weight:400;color:var(--border);line-height:1;margin-bottom:24px;transition:color .4s}
+.bloom-step:hover .bloom-num{color:var(--gold)}
+.bloom-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--charcoal);margin-bottom:14px}
+.bloom-body{font-size:14px;color:var(--light-gray);line-height:1.7}
+@media(max-width:768px){.bloom-steps{grid-template-columns:1fr}.bloom-step{border-right:none}}
 
-  /* SEASONS */
-  .seasons-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 0; margin-top: 60px;
-    border-top: 1px solid #eae7e2;
-  }
-  .season {
-    padding: 40px 36px;
-    border-bottom: 1px solid #eae7e2;
-    border-right: 1px solid #eae7e2;
-    transition: background 0.4s;
-  }
-  .season:nth-child(2n) { border-right: none; }
-  .season:hover { background: rgba(234, 231, 226, 0.25); }
-  .season-name {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 22px; font-weight: 400; color: #1a1918;
-    margin-bottom: 8px;
-  }
-  .season-details { font-size: 14px; color: #4a4643; line-height: 1.8; }
-  .season-flagship { margin-top: 8px; font-size: 13px; color: #76716d; font-style: italic; }
-  @media (max-width: 768px) {
-    .seasons-grid { grid-template-columns: 1fr; }
-    .season { border-right: none; }
-  }
+/* TRANSPARENCY */
+.t-blocks{margin-top:80px}
+.t-block{padding:40px 0;border-bottom:1px solid var(--border);transition:padding-left .4s}
+.t-block:first-child{border-top:1px solid var(--border)}
+.t-block:hover{padding-left:16px}
+.t-block-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--charcoal);margin-bottom:10px}
+.t-block-body{font-size:15px;color:var(--warm-gray);line-height:1.8}
+.t-block-body strong{color:var(--charcoal)}
 
-  /* MEMBERSHIP */
-  .membership-section { text-align: center; }
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--border)}
+.service{padding:48px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
+.service:nth-child(3n){border-right:none}
+.service:hover{background:rgba(234,231,226,.2);transform:translateY(-3px)}
+.service-name{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--charcoal);margin-bottom:12px}
+.service-body{font-size:13px;color:var(--light-gray);line-height:1.7}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}.service{border-right:none}}
 
-  /* CONTACT */
-  .contact-section { text-align: center; }
-  .contact-body {
-    font-size: 16px; color: #4a4643; max-width: 560px;
-    margin: 0 auto; line-height: 1.8;
-  }
-  .contact-email {
-    display: inline-block; margin-top: 32px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px; color: #1a1918; text-decoration: none;
-    border-bottom: 1px solid #a39e99; padding-bottom: 2px;
-    transition: border-color 0.3s, letter-spacing 0.3s;
-  }
-  .contact-email:hover { border-color: #b8973e; letter-spacing: 1px; }
+/* SEASONS */
+.seasons{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:80px;border-top:1px solid var(--border)}
+.season{padding:44px 40px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:all .4s}
+.season:nth-child(2n){border-right:none}
+.season:hover{background:rgba(201,169,110,.04)}
+.season-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:10px}
+.season-body{font-size:14px;color:var(--warm-gray);line-height:1.8}
+.season-flag{margin-top:10px;font-size:13px;color:var(--light-gray);font-style:italic}
+@media(max-width:768px){.seasons{grid-template-columns:1fr}.season{border-right:none}}
 
-  /* PARALLAX IMAGE SECTION */
-  .parallax-image {
-    position: relative;
-    width: 100%;
-    height: 45vh;
-    min-height: 300px;
-    max-height: 500px;
-    overflow: hidden;
-  }
-  .parallax-image .bg {
-    position: absolute; top: -20%; left: 0; right: 0; height: 140%;
-    background-size: cover;
-    background-position: center;
-    will-change: transform;
-  }
-  .parallax-image .overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(253,251,247,0.2), rgba(253,251,247,0.6));
-  }
+/* CTA */
+.cta{display:inline-block;font-family:var(--serif);font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:18px 48px;text-decoration:none;transition:all .4s;cursor:pointer;border:none}
+.cta-dark{background:var(--charcoal);color:var(--ivory)}
+.cta-dark:hover{background:#3d3a38;letter-spacing:4px}
+.cta-outline{background:transparent;color:var(--charcoal);border:1px solid var(--charcoal)}
+.cta-outline:hover{background:var(--charcoal);color:var(--ivory);letter-spacing:4px}
+.cta-group{margin-top:48px;display:flex;gap:20px;flex-wrap:wrap}
 
-  /* CTA BUTTONS */
-  .cta-btn {
-    display: inline-block;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fdfbf7;
-    background: #1a1918;
-    padding: 16px 40px;
-    text-decoration: none;
-    transition: background 0.3s, letter-spacing 0.3s;
-    cursor: pointer;
-    border: none;
-  }
-  .cta-btn:hover {
-    background: #3d3a38;
-    letter-spacing: 3px;
-  }
-  .cta-btn-outline {
-    display: inline-block;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #1a1918;
-    background: transparent;
-    padding: 14px 38px;
-    text-decoration: none;
-    border: 1px solid #1a1918;
-    transition: background 0.3s, color 0.3s, letter-spacing 0.3s;
-    cursor: pointer;
-  }
-  .cta-btn-outline:hover {
-    background: #1a1918;
-    color: #fdfbf7;
-    letter-spacing: 3px;
-  }
-  .cta-group {
-    margin-top: 40px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+/* ECOSYSTEM LINKS */
+.eco-links{display:flex;gap:48px;justify-content:center;margin-top:56px;flex-wrap:wrap}
+.eco-link{font-family:var(--serif);font-size:16px;color:var(--charcoal);text-decoration:none;border-bottom:1px solid var(--light-gray);padding-bottom:3px;transition:all .3s}
+.eco-link:hover{border-color:var(--gold)}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact-body{font-size:16px;color:var(--warm-gray);max-width:560px;margin:0 auto;line-height:1.9}
+.contact-email{display:inline-block;margin-top:36px;font-family:var(--serif);font-size:20px;color:var(--charcoal);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px;transition:all .3s}
+.contact-email:hover{border-color:var(--charcoal);letter-spacing:1px}
+
+/* FOOTER */
+footer{padding:80px 48px;background:var(--ivory);border-top:1px solid var(--border)}
+.footer-inner{max-width:1200px;margin:0 auto;text-align:center}
+.footer-title{font-family:var(--serif);font-size:16px;letter-spacing:5px;text-transform:uppercase;color:var(--charcoal);margin-bottom:8px;font-weight:400}
+.footer-sub{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--light-gray);margin-bottom:48px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;text-align:left;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.footer-col-title{font-family:var(--serif);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#3d3a38;margin-bottom:14px}
+.footer-col-desc{font-size:11px;color:var(--light-gray);line-height:1.6;margin-bottom:14px}
+.footer-col ul{list-style:none;padding:0;font-size:12px;line-height:2.2}
+.footer-col a{color:var(--warm-gray);text-decoration:none;transition:color .3s}
+.footer-col a:hover{color:var(--charcoal)}
+.footer-copy{font-size:11px;color:#a39e99;letter-spacing:1px}
 </style>
 </head>
 <body>
@@ -496,17 +187,17 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">The Living Love Collective</p>
     <h1>Pure Wellness<br>Love</h1>
-    <hr class="hero-rule">
+    <hr class="hero-divider">
     <p class="hero-subtitle">Bring Wellness Home. The flagship sensory e-commerce experience. Candles, botanicals, and ritual kits crafted for the spaces where life unfolds.</p>
   </div>
 </section>
 
-<!-- THE 5-PETAL LAYOUT -->
+<!-- 5 PETALS -->
 <section>
   <div class="section-inner">
     <p class="section-label reveal">The Architecture</p>
@@ -514,28 +205,28 @@
     <hr class="section-rule reveal">
     <p class="section-body reveal">Pure Wellness Love is organized into five living petals, each serving a distinct dimension of whole-family wellness.</p>
 
-    <div class="petals-grid">
-      <div class="petal-item reveal reveal-delay-1">
+    <div class="petals">
+      <div class="petal reveal reveal-d1">
         <span class="petal-num">I</span>
         <h3 class="petal-name">Store</h3>
         <p class="petal-body">The sensory commerce experience. Candles, botanicals, and curated ritual kits designed for every room and every season.</p>
       </div>
-      <div class="petal-item reveal reveal-delay-2">
+      <div class="petal reveal reveal-d2">
         <span class="petal-num">II</span>
         <h3 class="petal-name">School</h3>
         <p class="petal-body">Digital and in-person education. Sensory styling, material craft, and the art of bringing intentional living into the home.</p>
       </div>
-      <div class="petal-item reveal reveal-delay-3">
+      <div class="petal reveal reveal-d3">
         <span class="petal-num">III</span>
         <h3 class="petal-name">Events</h3>
         <p class="petal-body">Seasonal gatherings, workshops, and community experiences aligned with the four-season solar calendar.</p>
       </div>
-      <div class="petal-item reveal reveal-delay-4">
+      <div class="petal reveal reveal-d4">
         <span class="petal-num">IV</span>
         <h3 class="petal-name">Services</h3>
         <p class="petal-body">Sensory styling workshops, material styling courses, and digital interactive classes for individuals and households.</p>
       </div>
-      <div class="petal-item reveal reveal-delay-5">
+      <div class="petal reveal reveal-d5">
         <span class="petal-num">V</span>
         <h3 class="petal-name">Membership</h3>
         <p class="petal-body">The Bloom Circle. A white-glove household registry with milestone tracking, complimentary botanicals, and exclusive blessings.</p>
@@ -544,13 +235,11 @@
   </div>
 </section>
 
-<!-- IMAGE BREAK - hands planting -->
+<!-- IMAGE BREAK: HANDS PLANTING -->
 <div class="image-break reveal">
-  <img src="images/hands-planting.jpg" alt="Hands nurturing new growth">
-  <div class="overlay"></div>
-  <div class="image-break-text">
-    <p>Where intention meets craft</p>
-  </div>
+  <div class="image-break-bg" style="background-image:url('images/hands-planting.jpg')"></div>
+  <div class="image-break-overlay"></div>
+  <div class="image-break-text">Where intention meets craft</div>
 </div>
 
 <!-- THE STORE -->
@@ -561,58 +250,57 @@
     <hr class="section-rule reveal">
     <p class="section-body reveal">Each product is an editorial entry, a sensory story designed for a specific space, season, and moment in the life of a household.</p>
     <div class="cta-group reveal">
-      <a href="#store" class="cta-btn">Shop Now</a>
-      <a href="#bloom" class="cta-btn-outline">Join the Bloom Circle</a>
+      <a href="#store" class="cta cta-dark">Shop Now</a>
+      <a href="#bloom" class="cta cta-outline">Join the Bloom Circle</a>
     </div>
 
-    <div class="catalog-list">
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">Pikake Sampaguita Jasmine Line</h3>
-        <p class="catalog-tagline">For the living room</p>
-        <p class="catalog-body">Organic candle wax, pure jasmine botanical oils, aura essences. Establishes courage, spatial safety, environmental purity. The signature scent of the home.</p>
+    <div class="products">
+      <div class="product reveal">
+        <h3 class="product-name">Pikake Sampaguita Jasmine Line</h3>
+        <p class="product-tag">For the living room</p>
+        <p class="product-body">Organic candle wax, pure jasmine botanical oils, aura essences. Establishes courage, spatial safety, environmental purity. The signature scent of the home.</p>
       </div>
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">Lokelani Heavenly Rose Line</h3>
-        <p class="catalog-tagline">Deep heart-chakra activation</p>
-        <p class="catalog-body">Cottage rose base layered over velvet sandalwood extract. Devotional lineage honor, ancestral connection work. For the spaces where family gathers.</p>
+      <div class="product reveal">
+        <h3 class="product-name">Lokelani Heavenly Rose Line</h3>
+        <p class="product-tag">Deep heart-chakra activation</p>
+        <p class="product-body">Cottage rose base layered over velvet sandalwood extract. Devotional lineage honor, ancestral connection work. For the spaces where family gathers.</p>
       </div>
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">The Home Blessing Kit</h3>
-        <p class="catalog-tagline">For spatial resets</p>
-        <p class="catalog-body">Jasmine candle, raw minerals, energy-clearing mist, Feng Shui blueprints. For spatial resets after relocation or winter quiet. A complete ceremony for the home.</p>
+      <div class="product reveal">
+        <h3 class="product-name">The Home Blessing Kit</h3>
+        <p class="product-tag">For spatial resets</p>
+        <p class="product-body">Jasmine candle, raw minerals, energy-clearing mist, Feng Shui blueprints. For spatial resets after relocation or winter quiet. A complete ceremony for the home.</p>
       </div>
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">The New Business Launch Kit</h3>
-        <p class="catalog-tagline">Structural organization and wealth abundance</p>
-        <p class="catalog-body">Citrus and jasmine wax blend, organic linen desk wraps, vision-mapping journals. Professional visions and structural organization for new ventures.</p>
+      <div class="product reveal">
+        <h3 class="product-name">The New Business Launch Kit</h3>
+        <p class="product-tag">Structural organization and wealth abundance</p>
+        <p class="product-body">Citrus and jasmine wax blend, organic linen desk wraps, vision-mapping journals. Professional visions and structural organization for new ventures.</p>
       </div>
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">The Pillar of Honor (Bayani) Kit</h3>
-        <p class="catalog-tagline">For fathers, sons, uncles</p>
-        <p class="catalog-body">Cedarwood and jasmine essences, raw leather legacy journal, dialogue cards. Relationship transparency and protective honor. The masculine pillar, made tangible.</p>
+      <div class="product reveal">
+        <h3 class="product-name">The Pillar of Honor (Bayani) Kit</h3>
+        <p class="product-tag">For fathers, sons, uncles</p>
+        <p class="product-body">Cedarwood and jasmine essences, raw leather legacy journal, dialogue cards. Relationship transparency and protective honor. The masculine pillar, made tangible.</p>
       </div>
-      <div class="catalog-item reveal">
-        <h3 class="catalog-name">The Lokelani Grace Transition Kit</h3>
-        <p class="catalog-tagline">End-of-life vibrational care</p>
-        <p class="catalog-body">Unscented organic beeswax prayer candles, hand-woven bedside comfort wraps. End-of-life care, vibrational care, dignity. For the most sacred transitions.</p>
+      <div class="product reveal">
+        <h3 class="product-name">The Lokelani Grace Transition Kit</h3>
+        <p class="product-tag">End-of-life vibrational care</p>
+        <p class="product-body">Unscented organic beeswax prayer candles, hand-woven bedside comfort wraps. End-of-life care, vibrational care, dignity. For the most sacred transitions.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IMAGE SPLIT -->
-<div class="img-split reveal">
-  <img src="images/friends-sea.jpg" alt="Community by the sea">
-  <img src="images/ocean-sunset-rocks.jpg" alt="Ocean at sunset">
+<!-- SPLIT: FRIENDS SEA -->
+<div class="split reveal">
+  <div class="split-content" style="background:var(--cream)">
+    <p class="section-label">Membership</p>
+    <h2 class="section-title">Bloom Circle</h2>
+    <hr class="section-rule">
+    <p class="section-body">The inner circle of Pure Wellness Love. Members receive milestone tracking, complimentary botanicals, exclusive blessings voiced by Dr. Jasmine, and first access to seasonal kits and workshops.</p>
+  </div>
+  <div class="split-image" style="background-image:url('images/friends-sea.jpg')"></div>
 </div>
 
-<!-- BLOOM CIRCLE BANNER -->
-<div class="bloom-banner reveal">
-  <img src="images/family-beach-sunset.jpg" alt="Family gathering at golden hour">
-  <div class="overlay"></div>
-</div>
-
-<!-- THE BLOOM CIRCLE HOUSEHOLD REGISTRY -->
+<!-- BLOOM CIRCLE -->
 <section id="bloom">
   <div class="section-inner">
     <p class="section-label reveal">Learn</p>
@@ -621,31 +309,29 @@
     <p class="section-body reveal">A white-glove, multi-generational household registry. Upon joining, families log up to five critical annual lineage dates and receive curated sensory milestones throughout the year.</p>
 
     <div class="bloom-steps">
-      <div class="bloom-step reveal reveal-delay-1">
-        <div class="bloom-step-num">I</div>
-        <h3 class="bloom-step-title">Log Your Lineage Dates</h3>
-        <p class="bloom-step-body">Maternal and paternal birthdays. Wedding and partnership anniversaries. Business launch dates. Sacred ancestral remembrance days. Up to five dates per household.</p>
-        <span class="bloom-step-connector">&#8594;</span>
+      <div class="bloom-step reveal reveal-d1">
+        <div class="bloom-num">I</div>
+        <h3 class="bloom-title">Log Your Lineage Dates</h3>
+        <p class="bloom-body">Maternal and paternal birthdays. Wedding and partnership anniversaries. Business launch dates. Sacred ancestral remembrance days. Up to five dates per household.</p>
       </div>
-      <div class="bloom-step reveal reveal-delay-2">
-        <div class="bloom-step-num">II</div>
-        <h3 class="bloom-step-title">14 Days Prior</h3>
-        <p class="bloom-step-body">An automated sensory notice arrives, accompanied by a complimentary mini candle or botanical. A gentle, physical reminder that a sacred moment is approaching.</p>
-        <span class="bloom-step-connector">&#8594;</span>
+      <div class="bloom-step reveal reveal-d2">
+        <div class="bloom-num">II</div>
+        <h3 class="bloom-title">14 Days Prior</h3>
+        <p class="bloom-body">An automated sensory notice arrives, accompanied by a complimentary mini candle or botanical. A gentle, physical reminder that a sacred moment is approaching.</p>
       </div>
-      <div class="bloom-step reveal reveal-delay-3">
-        <div class="bloom-step-num">III</div>
-        <h3 class="bloom-step-title">On the Milestone Day</h3>
-        <p class="bloom-step-body">An exclusive five-minute somatic audio or written blessing track, voiced by Dr. Jasmine. A personal, spoken honoring of the moment.</p>
+      <div class="bloom-step reveal reveal-d3">
+        <div class="bloom-num">III</div>
+        <h3 class="bloom-title">On the Milestone Day</h3>
+        <p class="bloom-body">An exclusive five-minute somatic audio or written blessing track, voiced by Dr. Jasmine. A personal, spoken honoring of the moment.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PARALLAX IMAGE - green hills -->
-<div class="parallax-image reveal">
-  <div class="bg" style="background-image: url('images/green-hills.jpg');"></div>
-  <div class="overlay"></div>
+<!-- IMAGE BREAK: GREEN HILLS -->
+<div class="image-break reveal">
+  <div class="image-break-bg" style="background-image:url('images/green-hills.jpg')"></div>
+  <div class="image-break-overlay"></div>
 </div>
 
 <!-- FINANCIAL TRANSPARENCY -->
@@ -655,30 +341,28 @@
     <h2 class="section-title reveal">Financial Transparency</h2>
     <hr class="section-rule reveal">
 
-    <div class="transparency-blocks">
+    <div class="t-blocks">
       <div class="t-block reveal">
         <h3 class="t-block-title">10% of Gross Store Profits</h3>
-        <p class="t-block-flow">Directed to the <strong>WellMade Foundation</strong>.</p>
+        <p class="t-block-body">Directed to the <strong>WellMade Foundation</strong>.</p>
       </div>
       <div class="t-block reveal">
         <h3 class="t-block-title">70% to Sampaguita Scholarship</h3>
-        <p class="t-block-flow">Tuition funds supporting the next generation of scholars and leaders.</p>
+        <p class="t-block-body">Tuition funds supporting the next generation of scholars and leaders.</p>
       </div>
       <div class="t-block reveal">
         <h3 class="t-block-title">30% to Local Operations</h3>
-        <p class="t-block-flow">Local event operations and <strong>raw materials</strong> for community programming.</p>
+        <p class="t-block-body">Local event operations and <strong>raw materials</strong> for community programming.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IMAGE BREAK - woman field -->
+<!-- IMAGE BREAK: WOMAN FIELD -->
 <div class="image-break reveal">
-  <img src="images/woman-field-mountains.jpg" alt="Woman in a mountain field">
-  <div class="overlay"></div>
-  <div class="image-break-text">
-    <p>Hands-on experiences in sensory craft and material styling</p>
-  </div>
+  <div class="image-break-bg" style="background-image:url('images/woman-field-mountains.jpg')"></div>
+  <div class="image-break-overlay"></div>
+  <div class="image-break-text">Hands-on experiences in sensory craft and material styling</div>
 </div>
 
 <!-- SERVICES -->
@@ -690,15 +374,15 @@
     <p class="section-body reveal">Hands-on experiences in sensory craft, material styling, and digital education. Each service deepens the relationship between intention and living space.</p>
 
     <div class="services-grid">
-      <div class="service-item reveal reveal-delay-1">
+      <div class="service reveal reveal-d1">
         <h3 class="service-name">Sensory Styling Workshops</h3>
         <p class="service-body">Learn to curate the sensory landscape of your home through scent, light, and material intention.</p>
       </div>
-      <div class="service-item reveal reveal-delay-2">
+      <div class="service reveal reveal-d2">
         <h3 class="service-name">Material Styling Courses</h3>
         <p class="service-body">Deep-dive instruction in botanical craft, wax formulation, and the art of spatial composition.</p>
       </div>
-      <div class="service-item reveal reveal-delay-3">
+      <div class="service reveal reveal-d3">
         <h3 class="service-name">Digital Interactive Classes</h3>
         <p class="service-body">Live and recorded sessions bringing the school petal into any home, anywhere.</p>
       </div>
@@ -706,11 +390,7 @@
   </div>
 </section>
 
-<!-- PARALLAX IMAGE - maui mountains -->
-<div class="parallax-image reveal">
-  <div class="bg" style="background-image: url('images/maui-mountains.jpg');"></div>
-  <div class="overlay"></div>
-</div>
+<hr class="gold-divider">
 
 <!-- SEASONAL PROGRAMMING -->
 <section>
@@ -720,185 +400,105 @@
     <hr class="section-rule reveal">
     <p class="section-body reveal">A four-season solar calendar guides the store, services, and events of Pure Wellness Love, aligning household rituals with the natural world.</p>
 
-    <div class="seasons-grid">
-      <div class="season reveal reveal-delay-1">
+    <div class="seasons">
+      <div class="season reveal reveal-d1">
         <h3 class="season-name">Spring</h3>
-        <p class="season-details">Home Blessing Kit focus. Spatial resets, clearing ceremonies, and the renewal of the living environment.</p>
-        <p class="season-flagship">Flagship: The Home Blessing Kit</p>
+        <p class="season-body">Home Blessing Kit focus. Spatial resets, clearing ceremonies, and the renewal of the living environment.</p>
+        <p class="season-flag">Flagship: The Home Blessing Kit</p>
       </div>
-      <div class="season reveal reveal-delay-2">
+      <div class="season reveal reveal-d2">
         <h3 class="season-name">Summer</h3>
-        <p class="season-details">Heavy programmatic tracking. Community workshops, sensory styling intensives, and Bloom Circle milestone celebrations.</p>
+        <p class="season-body">Heavy programmatic tracking. Community workshops, sensory styling intensives, and Bloom Circle milestone celebrations.</p>
       </div>
-      <div class="season reveal reveal-delay-3">
+      <div class="season reveal reveal-d3">
         <h3 class="season-name">Fall</h3>
-        <p class="season-details">New Business Launch Kit deployment. Professional vision-mapping, structural organization, and wealth abundance rituals.</p>
-        <p class="season-flagship">Flagship: The New Business Launch Kit</p>
+        <p class="season-body">New Business Launch Kit deployment. Professional vision-mapping, structural organization, and wealth abundance rituals.</p>
+        <p class="season-flag">Flagship: The New Business Launch Kit</p>
       </div>
-      <div class="season reveal reveal-delay-4">
+      <div class="season reveal reveal-d4">
         <h3 class="season-name">Winter</h3>
-        <p class="season-details">Lokelani Grace Transition Kit. Sacred Rosary Transition Framework. Organic beeswax lines. For the most sacred and quiet season.</p>
-        <p class="season-flagship">Flagship: The Lokelani Grace Transition Kit</p>
+        <p class="season-body">Lokelani Grace Transition Kit. Sacred Rosary Transition Framework. Organic beeswax lines. For the most sacred and quiet season.</p>
+        <p class="season-flag">Flagship: The Lokelani Grace Transition Kit</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MEMBERSHIP / BLOOM CIRCLE -->
-<section class="membership-section">
-  <div class="section-inner">
-    <p class="section-label reveal">Membership</p>
-    <h2 class="section-title reveal">Bloom Circle</h2>
-    <hr class="section-rule reveal" style="margin-left: auto; margin-right: auto;">
-    <p class="section-body reveal" style="max-width: 560px; margin: 0 auto;">The inner circle of Pure Wellness Love. Members receive milestone tracking, complimentary botanicals, exclusive blessings voiced by Dr. Jasmine, and first access to seasonal kits and workshops.</p>
-  </div>
-</section>
-
-
-<!-- THE ECOSYSTEM -->
+<!-- ECOSYSTEM -->
 <section>
-  <div class="section-inner" style="text-align: center;">
+  <div class="section-inner" style="text-align:center">
     <p class="section-label reveal">The Ecosystem</p>
     <h2 class="section-title reveal">The Living Love Collective</h2>
-    <hr class="section-rule reveal" style="margin-left: auto; margin-right: auto;">
-    <p class="section-body reveal" style="max-width: 600px; margin: 0 auto;">Pure Wellness Love is one of three engines in the Living Love Collective.</p>
-    <div style="display: flex; gap: 40px; justify-content: center; margin-top: 48px; flex-wrap: wrap;" class="reveal">
-      <a href="https://jack108510.github.io/dr-jasmine-site/" style="font-family: 'Times New Roman', Times, serif; font-size: 16px; color: #1a1918; text-decoration: none; border-bottom: 1px solid #a39e99; padding-bottom: 2px; transition: border-color 0.3s;">Dr. Jasmine — The Root</a>
-      <a href="https://jack108510.github.io/well-made-foundation/" style="font-family: 'Times New Roman', Times, serif; font-size: 16px; color: #1a1918; text-decoration: none; border-bottom: 1px solid #a39e99; padding-bottom: 2px; transition: border-color 0.3s;">Well Made Foundation — The Soil</a>
+    <hr class="section-rule reveal" style="margin-left:auto;margin-right:auto">
+    <p class="section-body reveal" style="max-width:600px;margin:0 auto">Pure Wellness Love is one of three engines in the Living Love Collective.</p>
+    <div class="eco-links reveal">
+      <a href="https://jack108510.github.io/dr-jasmine-site/" class="eco-link">Dr. Jasmine — The Root</a>
+      <a href="https://jack108510.github.io/well-made-foundation/" class="eco-link">Well Made Foundation — The Soil</a>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact-section">
+<section id="contact" class="contact">
   <div class="section-inner">
     <p class="section-label reveal">Connect</p>
     <h2 class="section-title reveal">Contact</h2>
-    <hr class="section-rule reveal" style="margin-left: auto; margin-right: auto;">
+    <hr class="section-rule reveal" style="margin-left:auto;margin-right:auto">
     <p class="contact-body reveal">To shop, join the Bloom Circle, participate in a workshop, or refer a household, reach out. Every conversation is the beginning of something generational.</p>
-    <div class="reveal" style="padding-top: 8px;">
-      <a href="mailto:contact@purewellnesslove.com" class="contact-email">contact@purewellnesslove.com</a>
-    </div>
+    <a href="mailto:contact@purewellnesslove.com" class="contact-email reveal">contact@purewellnesslove.com</a>
   </div>
 </section>
 
 <!-- FOOTER -->
-<!-- THE LIVING LOVE COLLECTIVE GLOBAL MINIMALIST FOOTER -->
-<footer style="padding: 60px 20px; background-color: #fdfbf7; border-top: 1px solid #eae7e2; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
- <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-
- <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: #1a1918; margin-bottom: 8px; font-weight: 400;">
- The Living Love Collective
- </h2>
- <p style="font-family: 'Times New Roman', Times, serif; font-size: 12px; font-style: italic; color: #76716d; margin-bottom: 40px;">
- An editorial ecosystem of pure living, whole-family generational care, and conscious leadership.
- </p><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px; border-bottom: 1px solid #eae7e2; padding-bottom: 40px;">
-
- <!-- Engine I -->
- <div>
- <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #3d3a38; margin-bottom: 12px;">PURE WELLNESS LOVE</h3>
- <p style="font-size: 11px; color: #76716d; line-height: 1.6; margin-bottom: 12px;">The Branches (Commerce &amp; Sanctuary Elements)</p>
- <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2;">
- <li><a href="https://jack108510.github.io/pure-wellness-joy/#store" style="color: #4a4643; text-decoration: none;">Shop The Lifestyle Store</a></li>
- <li><a href="https://jack108510.github.io/pure-wellness-joy/#bloom" style="color: #4a4643; text-decoration: none;">Join The Bloom Circle Registry</a></li>
- <li><a href="https://jack108510.github.io/pure-wellness-joy/#store" style="color: #4a4643; text-decoration: none;">Explore Milestone &amp; Ritual Kits</a></li>
- </ul>
- </div>
-
- <!-- Engine II -->
- <div>
- <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #3d3a38; margin-bottom: 12px;">WELL MADE FOUNDATION</h3>
- <p style="font-size: 11px; color: #76716d; line-height: 1.6; margin-bottom: 12px;">The Soil (Humanitarian Shield &amp; Family Care)</p>
- <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2;">
- <li><a href="https://jack108510.github.io/well-made-foundation/#membership" style="color: #4a4643; text-decoration: none;">Donate: $30 Lifetime Family Entry</a></li>
- <li><a href="https://jack108510.github.io/well-made-foundation/#programs" style="color: #4a4643; text-decoration: none;">Mothers &amp; Daughters / Moms &amp; Dads Empowered</a></li>
- <li><a href="https://jack108510.github.io/well-made-foundation/#programs" style="color: #4a4643; text-decoration: none;">Participate in the Family Pentathlon</a></li>
- </ul>
- </div>
-
- <!-- Engine III -->
- <div>
- <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #3d3a38; margin-bottom: 12px;">DR. JASMINE</h3>
- <p style="font-size: 11px; color: #76716d; line-height: 1.6; margin-bottom: 12px;">The Root (Clinical Somatics &amp; Personal Authority)</p>
- <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2;">
- <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings" style="color: #4a4643; text-decoration: none;">Learn About the Divine Spark Platform</a></li>
- <li><a href="https://jack108510.github.io/dr-jasmine-site/#practice" style="color: #4a4643; text-decoration: none;">Advanced Somatic Practitioner Frameworks</a></li>
- <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings" style="color: #4a4643; text-decoration: none;">Executive Leadership Summits &amp; Retreats</a></li>
- </ul>
- </div>
-
- </div>
-
- <p style="font-size: 11px; color: #a39e99; letter-spacing: 1px;">
- &copy; 2026 The Living Love Collective. Founded and guided with complete devotion by Dr. Jasmine Therese Esguerra.
- </p>
-
- </div>
+<footer>
+<div class="footer-inner">
+  <h2 class="footer-title">The Living Love Collective</h2>
+  <p class="footer-sub">An editorial ecosystem of pure living, whole-family generational care, and conscious leadership.</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3 class="footer-col-title">Pure Wellness Love</h3>
+      <p class="footer-col-desc">The Branches (Commerce &amp; Sanctuary Elements)</p>
+      <ul>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/#store">Shop The Lifestyle Store</a></li>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/#bloom">Join The Bloom Circle Registry</a></li>
+        <li><a href="https://jack108510.github.io/pure-wellness-joy/#store">Explore Milestone &amp; Ritual Kits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Well Made Foundation</h3>
+      <p class="footer-col-desc">The Soil (Humanitarian Shield &amp; Family Care)</p>
+      <ul>
+        <li><a href="https://jack108510.github.io/well-made-foundation/#membership">Donate: $30 Lifetime Family Entry</a></li>
+        <li><a href="https://jack108510.github.io/well-made-foundation/#programs">Mothers &amp; Daughters / Moms &amp; Dads Empowered</a></li>
+        <li><a href="https://jack108510.github.io/well-made-foundation/#programs">Participate in the Family Pentathlon</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Dr. Jasmine</h3>
+      <p class="footer-col-desc">The Root (Clinical Somatics &amp; Personal Authority)</p>
+      <ul>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings">Learn About the Divine Spark Platform</a></li>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/#practice">Advanced Somatic Practitioner Frameworks</a></li>
+        <li><a href="https://jack108510.github.io/dr-jasmine-site/#offerings">Executive Leadership Summits &amp; Retreats</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2026 The Living Love Collective. Founded and guided with complete devotion by Dr. Jasmine Therese Esguerra.</p>
+</div>
 </footer>
 
 <script>
-// Scroll Reveal with IntersectionObserver
-(function() {
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  reveals.forEach(function(el) {
-    observer.observe(el);
-  });
-})();
+const hb=document.getElementById('heroBg');
+let tk=false;
+window.addEventListener('scroll',()=>{if(!tk){requestAnimationFrame(()=>{const s=window.pageYOffset;if(hb&&s<window.innerHeight)hb.style.transform=`translateY(${s*.35}px)`;tk=false});tk=true}});
 
-// Hero Parallax
-(function() {
-  var hero = document.querySelector('.hero');
-  var heroBg = document.querySelector('.hero-bg');
-  if (!hero || !heroBg) return;
+document.querySelectorAll('.image-break-bg').forEach(bg=>{const p=bg.parentElement;let t=false;window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{const r=p.getBoundingClientRect();bg.style.transform=`translateY(${((r.top+r.height/2-window.innerHeight/2)*.12)}px)`;t=false});t=true}})});
 
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        var scrollY = window.pageYOffset;
-        var heroBottom = hero.offsetTop + hero.offsetHeight;
-        if (scrollY < heroBottom) {
-          heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-})();
-
-// Mid-page parallax images
-(function() {
-  var parallaxBgs = document.querySelectorAll('.parallax-image .bg');
-  if (!parallaxBgs.length) return;
-
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        parallaxBgs.forEach(function(bg) {
-          var rect = bg.parentElement.getBoundingClientRect();
-          var center = rect.top + rect.height / 2;
-          var viewCenter = window.innerHeight / 2;
-          var offset = (center - viewCenter) * 0.15;
-          bg.style.transform = 'translateY(' + offset + 'px)';
-        });
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-})();
+let ls=0;const nv=document.querySelector('nav');
+window.addEventListener('scroll',()=>{const c=window.pageYOffset;if(c>ls&&c>100)nv.style.transform='translateY(-100%)';else nv.style.transform='translateY(0)';ls=c});
 </script>
-
 </body>
 </html>
