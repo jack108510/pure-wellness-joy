@@ -9,7 +9,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--ivory:#fdfbf7;--charcoal:#1a1a1a;--gold:#c9a96e;--cream:#f5f0e8;--gold-light:#e8d5a8}
 html{scroll-behavior:smooth}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--ivory);color:var(--charcoal);font-weight:300;line-height:1.7;overflow-x:hidden}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--ivory);color:var(--charcoal);font-weight:300;line-height:2;overflow-x:hidden}
 h1,h2,h3,h4,h5{font-family:'Playfair Display',Georgia,serif;font-weight:400}
 
 .tracker-bar{background:var(--charcoal);color:var(--gold);text-align:center;padding:10px 20px;font-size:11px;letter-spacing:3px;font-weight:400;font-family:'Playfair Display',serif}
@@ -31,8 +31,8 @@ nav .nav-links a:hover::after{width:100%}
 /* Hero - EDITORIAL with immense whitespace */
 .hero{min-height:100vh;display:flex;align-items:center;padding:180px 120px 120px;position:relative}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;max-width:1400px;margin:0 auto}
-.hero-text .label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:30px}
-.hero-text h1{font-size:clamp(42px,6vw,88px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:40px}
+.hero-text .label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:50px}
+.hero-text h1{font-size:clamp(42px,6vw,88px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:60px}
 .hero-text h1 em{font-style:italic;color:var(--gold)}
 .hero-text p{font-size:15px;line-height:1.9;color:#666;max-width:440px}
 .hero-visual{position:relative}
@@ -46,10 +46,10 @@ nav .nav-links a:hover::after{width:100%}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
 
 .gold-line{width:60px;height:1px;background:var(--gold);margin:24px 0}
-.gold-divider{text-align:center;padding:80px 0}
+.gold-divider{text-align:center;padding:140px 0}
 .gold-divider::before{content:'✦';color:var(--gold);font-size:18px;letter-spacing:20px}
 
-.label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:40px}
 
 /* Store - EDITORIAL staggered grid */
 .store{padding:160px 80px}
@@ -64,8 +64,8 @@ nav .nav-links a:hover::after{width:100%}
 .product-card .product-num{font-family:'Playfair Display',serif;font-size:120px;color:var(--cream);position:absolute;top:-20px;right:20px;font-weight:700;line-height:1;pointer-events:none;transition:color .3s}
 .product-card:hover .product-num{color:rgba(201,169,110,.15)}
 .product-card h3{font-size:28px;font-weight:400;margin-bottom:8px;position:relative}
-.product-card .composition{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative}
-.product-card .purpose{font-size:14px;line-height:1.8;color:#666;max-width:400px;position:relative}
+.product-card .composition{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:40px;position:relative}
+.product-card .purpose{font-size:14px;line-height:2.1;color:#666;max-width:400px;position:relative}
 .product-card .btn-gold{margin-top:30px;position:relative}
 
 /* Wide product cards for asymmetric feel */
@@ -82,25 +82,25 @@ nav .nav-links a:hover::after{width:100%}
 /* Bloom Circle */
 .bloom{padding:200px 80px;background:var(--charcoal);color:#fff;position:relative;overflow:hidden}
 .bloom::before{content:'BLOOM';position:absolute;top:-30px;right:-10px;font-size:clamp(80px,12vw,200px);font-family:'Playfair Display',serif;color:rgba(201,169,110,.03);font-weight:700;pointer-events:none}
-.bloom-inner{max-width:900px;margin:0 auto}
+.bloom-inner{max-width:1100px;margin:0 auto}
 .bloom h2{font-size:clamp(40px,5vw,64px);font-weight:300;margin-bottom:16px}
-.bloom>p{color:rgba(255,255,255,.5);font-size:14px;line-height:1.8;max-width:500px;margin-bottom:80px}
+.bloom>p{color:rgba(255,255,255,.5);font-size:14px;line-height:2.1;max-width:500px;margin-bottom:80px}
 .bloom-steps{display:flex;flex-direction:column;gap:60px}
 .bloom-step{display:grid;grid-template-columns:60px 1fr;gap:40px;align-items:start}
 .bloom-step .step-num{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);font-weight:300}
 .bloom-step h4{font-size:20px;font-weight:400;margin-bottom:10px;color:var(--gold-light)}
-.bloom-step p{color:rgba(255,255,255,.55);font-size:14px;line-height:1.8}
+.bloom-step p{color:rgba(255,255,255,.55);font-size:14px;line-height:2.1}
 
 /* Transparency */
 .transparency{padding:180px 80px;text-align:center}
-.transparency h2{font-size:clamp(32px,4vw,52px);font-weight:300;margin-bottom:20px}
+.transparency h2{font-size:clamp(32px,4vw,52px);font-weight:300;margin-bottom:40px}
 .transparency .gold-line{margin:0 auto 40px}
-.transparency p{color:#666;font-size:15px;line-height:1.9;max-width:700px;margin:0 auto 20px}
+.transparency p{color:#666;font-size:15px;line-height:1.9;max-width:900px;margin:0 auto 20px}
 .transparency-flow{display:flex;justify-content:center;align-items:center;gap:30px;margin-top:60px;flex-wrap:wrap}
 .flow-item{padding:30px 40px;border:1px solid var(--cream);text-align:center;max-width:240px}
 .flow-item h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:4px}
 .flow-item .pct{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);margin:8px 0}
-.flow-item p{font-size:12px;color:#888;line-height:1.6}
+.flow-item p{font-size:12px;color:#888;line-height:1.9}
 .flow-arrow{color:var(--gold);font-size:24px}
 
 /* Footer */
@@ -130,17 +130,17 @@ footer{background:var(--charcoal);color:#fff;padding:100px 80px 60px;border-top:
 }
 @media(max-width:640px){
   .hero{padding:120px 24px 60px}
-  .store{padding:80px 24px}
+  .store{padding:140px 48px}
   .product-grid{grid-template-columns:1fr}
   .product-card:nth-child(odd){border-right:none}
-  .product-card{padding:60px 24px}
-  .product-wide{padding:60px 24px}
-  .bloom{padding:100px 24px}
-  .transparency{padding:100px 24px}
+  .product-card{padding:120px 48px}
+  .product-wide{padding:120px 48px}
+  .bloom{padding:160px 48px}
+  .transparency{padding:160px 48px}
   
   nav .nav-links{display:none}
   .transparency-flow{flex-direction:column}
-  footer{padding:60px 24px 30px}
+  footer{padding:120px 48px 30px}
   .bloom-step{grid-template-columns:1fr;gap:10px}
 }
 </style>
