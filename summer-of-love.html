@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-Day Summer of Love Challenge — Pure Wellness Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ivory:#fdfbf7;--charcoal:#1a1a1a;--gold:#c9a96e;--cream:#f5f0e8;--gold-light:#e8d5a8}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--ivory);color:var(--charcoal);font-weight:300;line-height:2;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:400}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(253,251,247,.95);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(201,169,110,.15)}
+nav .logo{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:4px;color:var(--charcoal);text-decoration:none;text-transform:uppercase}
+nav .back{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--charcoal);text-decoration:none;opacity:.6;transition:opacity .3s}
+nav .back:hover{opacity:1}
+
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a0a0a 0%,#2d1515 40%,#1a0f0a 100%);overflow:hidden}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,169,110,.15) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:780px;padding:120px 40px 80px}
+.hero-label{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;font-family:'Playfair Display',serif}
+.hero-content h1{font-size:clamp(42px,7vw,96px);font-weight:400;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}
+.hero-content h1 em{font-style:italic;color:var(--gold)}
+.hero-price{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:32px}
+.hero-price strong{color:var(--gold);font-size:18px;letter-spacing:2px}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:0 auto 32px}
+.hero-sub{font-size:15px;line-height:1.9;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 50px}
+
+.btn-gold{display:inline-block;padding:18px 56px;background:var(--gold);color:var(--charcoal);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;transition:all .3s;cursor:pointer;border:none}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-outline-white{display:inline-block;padding:18px 56px;border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:400;transition:all .3s;margin-left:16px}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+.section{padding:100px 60px}
+.section-inner{max-width:900px;margin:0 auto}
+.label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.gold-line{width:60px;height:1px;background:var(--gold);margin:24px 0}
+
+/* What you get */
+.days-section{background:var(--ivory);padding:100px 60px}
+.days-inner{max-width:900px;margin:0 auto}
+.days-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:60px}
+.day-card{padding:48px 40px;border-bottom:1px solid var(--cream);position:relative}
+.day-card:nth-child(odd){border-right:1px solid var(--cream)}
+.day-number{font-family:'Playfair Display',serif;font-size:64px;color:var(--cream);line-height:1;margin-bottom:12px;font-weight:700}
+.day-card h3{font-size:22px;margin-bottom:8px}
+.day-card p{font-size:14px;color:#666;line-height:1.9}
+.day-card:last-child:nth-child(odd){border-right:none;grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+
+/* Includes */
+.includes-section{background:var(--charcoal);padding:100px 60px;color:#fff}
+.includes-inner{max-width:900px;margin:0 auto}
+.includes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px}
+.include-item{text-align:center;padding:40px 20px}
+.include-icon{font-size:32px;margin-bottom:20px}
+.include-item h3{font-size:16px;margin-bottom:12px;color:var(--gold)}
+.include-item p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.9}
+
+/* CTA block */
+.cta-section{background:var(--cream);padding:120px 60px;text-align:center}
+.cta-inner{max-width:640px;margin:0 auto}
+.price-display{margin:40px 0}
+.price-display .amount{font-family:'Playfair Display',serif;font-size:80px;color:var(--charcoal);line-height:1}
+.price-display .currency{font-size:28px;vertical-align:super}
+.price-display .period{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#888;display:block;margin-top:8px}
+.guarantee{margin-top:40px;font-size:12px;color:#999;letter-spacing:1px}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:18px 24px}
+  .hero-content{padding:100px 24px 60px}
+  .section,.days-section,.includes-section,.cta-section{padding:70px 24px}
+  .days-grid{grid-template-columns:1fr}
+  .day-card:nth-child(odd){border-right:none}
+  .day-card:last-child:nth-child(odd){grid-column:auto;display:block}
+  .includes-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="back">← Pure Wellness Love</a>
+  <a href="index.html" class="logo">Pure Wellness Love</a>
+  <div style="width:160px"></div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-label">5 Days · 1 Transformation</p>
+    <h1>Summer<br>of <em>Love</em></h1>
+    <p class="hero-price">Challenge · <strong>$100</strong></p>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Five days to reconnect with your body, your breath, and your most radiant self. Guided by Dr. Jasmine — live, intimate, and designed to move you.</p>
+    <!-- SHOPIFY LINK: Replace href below with your Shopify checkout URL -->
+    <a href="#join" class="btn-gold">Join the Challenge — $100</a>
+    <a href="#what-to-expect" class="btn-outline-white">See What's Included</a>
+  </div>
+</section>
+
+<!-- What to Expect -->
+<section class="days-section" id="what-to-expect">
+  <div class="days-inner">
+    <div class="reveal">
+      <p class="label">The Journey</p>
+      <h2 style="font-size:clamp(36px,4vw,56px);line-height:1.1">Five Days.<br>Five Shifts.</h2>
+      <div class="gold-line"></div>
+      <p style="color:#666;font-size:15px;max-width:520px">Each day unlocks a new layer — from the body outward. This isn't a crash course. It's a remembering.</p>
+    </div>
+    <div class="days-grid">
+      <div class="day-card reveal">
+        <div class="day-number">01</div>
+        <h3>Arrival</h3>
+        <p>Ground yourself in the present. We begin where you are — no perfection required. A gentle somatic opening to set the tone for everything that follows.</p>
+      </div>
+      <div class="day-card reveal">
+        <div class="day-number">02</div>
+        <h3>The Body Speaks</h3>
+        <p>Listen deeply to what your body has been trying to tell you. Breath, movement, and awareness practices designed to dissolve tension you didn't know you were holding.</p>
+      </div>
+      <div class="day-card reveal">
+        <div class="day-number">03</div>
+        <h3>Heart Open</h3>
+        <p>Practices rooted in love — self-love, relational love, and the love that is simply your nature. This is the heart of the challenge.</p>
+      </div>
+      <div class="day-card reveal">
+        <div class="day-number">04</div>
+        <h3>The Radiant Self</h3>
+        <p>Activate your inner vitality. Energy practices, nourishment rituals, and the tools to sustain what you've built across the week.</p>
+      </div>
+      <div class="day-card reveal" style="grid-column:1/-1;display:block;border-right:none">
+        <div class="day-number">05</div>
+        <h3>Integration</h3>
+        <p>You don't leave the same. Day five is about anchoring your experience into your real life — with clarity, intention, and the community around you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Includes -->
+<section class="includes-section">
+  <div class="includes-inner">
+    <div class="reveal" style="text-align:center">
+      <p class="label" style="color:var(--gold)">Everything Included</p>
+      <h2 style="font-size:clamp(32px,4vw,52px);color:#fff">What You Receive</h2>
+    </div>
+    <div class="includes-grid">
+      <div class="include-item reveal">
+        <div class="include-icon">🌸</div>
+        <h3>5 Live Sessions</h3>
+        <p>Daily guided sessions with Dr. Jasmine — intimate, interactive, and designed to create real movement in your life.</p>
+      </div>
+      <div class="include-item reveal">
+        <div class="include-icon">📖</div>
+        <h3>Daily Practice Guide</h3>
+        <p>Each morning you receive a simple ritual guide. 10 minutes that anchor the day's theme into your body and mind.</p>
+      </div>
+      <div class="include-item reveal">
+        <div class="include-icon">🤍</div>
+        <h3>Community Access</h3>
+        <p>Join a circle of women moving through the challenge together. Connection, accountability, and shared momentum.</p>
+      </div>
+      <div class="include-item reveal">
+        <div class="include-icon">🎙️</div>
+        <h3>Session Recordings</h3>
+        <p>All sessions recorded and available to you. Revisit what landed most, at any time.</p>
+      </div>
+      <div class="include-item reveal">
+        <div class="include-icon">✨</div>
+        <h3>Somatic Practices</h3>
+        <p>Body-based tools from Dr. Jasmine's clinical practice — adapted for everyday life and accessible to all levels.</p>
+      </div>
+      <div class="include-item reveal">
+        <div class="include-icon">🌿</div>
+        <h3>Post-Challenge Path</h3>
+        <p>Completion unlocks a pathway to continue — deeper community, ongoing programs, and Dr. Jasmine's full ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="join">
+  <div class="cta-inner reveal">
+    <p class="label">Ready to Begin</p>
+    <h2 style="font-size:clamp(36px,4vw,56px);line-height:1.1">Join the Summer<br>of Love Challenge</h2>
+    <div class="price-display">
+      <div class="amount"><span class="currency">$</span>100</div>
+      <span class="period">One-time · Full 5-day access</span>
+    </div>
+    <!-- SHOPIFY LINK: Replace href below with your Shopify checkout URL -->
+    <a href="#SHOPIFY_CHECKOUT_URL" class="btn-gold">Claim Your Spot</a>
+    <p class="guarantee">Questions? <a href="mailto:jack@wildroseautomations.ca" style="color:var(--gold);text-decoration:none">Email Dr. Jasmine</a></p>
+  </div>
+</section>
+
+<footer style="background:var(--charcoal);color:rgba(255,255,255,.4);text-align:center;padding:40px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase">
+  <p><a href="index.html" style="color:var(--gold);text-decoration:none">Pure Wellness Love</a> &nbsp;·&nbsp; Part of <a href="https://jack108510.github.io/well-made-foundation/" style="color:rgba(255,255,255,.4);text-decoration:none">The Living Love Collective</a></p>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
